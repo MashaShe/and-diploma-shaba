@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "524510872959",
+    "project_id": "and-diploma-shaba-fb",
+    "storage_bucket": "and-diploma-shaba-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524510872959:android:9f8351cbd250224cca064a",
+        "android_client_info": {
+          "package_name": "com.example.and_diploma_shaba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524510872959-jb2f1j3d27gmirh2iuu9r3k1pnla0hm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5VBiBuE1RGNrjjSyASumVouAScBiaZsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524510872959-jb2f1j3d27gmirh2iuu9r3k1pnla0hm4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ШабаЛинк</string>
+    <string name="main_text">ШабаЛинк!</string>
+    <string name="headerText">Нетология. Он-лайн университет открытых профессий</string>
+    <string name="timeTextview">23 Мая в 18:36</string>
+    <string name="longTexview">" Помогаем расти в профессии и открывать новые карьерные горизонты💫\n\n\
+        Нетология — это 4 уровня образования:\n\n
+        ✅ для начинающих, которые хотят освоить актуальную профессию с нуля
+        ✅ для специалистов, которые стремятся вырасти в карьере
+        ✅ для руководителей, которые нацелены усилить лидерские навыки
+        ✅ и для компаний, которым нужно обучить команду\n\n
+        Маркетинг, дизайн, программирование, soft skills, MBA, управление проектами, аналитика и data science — выбирайте,
+        что вам ближе и приходите к нам за знаниями и ростом.\n\n
+        Перемены — всегда правильный выбор👌🏻  http://netolo.gy/fEU "</string>
+
+    <string name="description_post_author_avatar">Аватар автора поста</string>
+    <string name="description_post_menu">Меню поста</string>
+    <string name="description_post_like">Нравится</string>
+    <string name="description_post_share">Поделиться</string>
+    <string name="description_post_seen">Просмотров</string>
+    <string name="description_post_save">Сохранить</string>
+    <string name="error_empty_content">Нельзя оставлять поле пустым</string>
+    <string name="post_text">Введите текст</string>
+    <string name="editText">Редактирование текста</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="menu_remove">Удалить</string>
+    <string name="add_post">Добавить пост</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="login_text">Войти</string>
+    <string name="login_note_text">Пожалуйста, введите ваш логин и пароль ниже</string>
+    <string name="login_hint">Введите свой логин (адрес электронной почты)</string>
+    <string name="pass_hint">Введите свой пароль</string>
+    <string name="log_in_button_text">Войти</string>
+    <string name="reg_button_text">Регистрация</string>
+
+    <string name="google_play_unavailable">Google Api Недоступно</string>
+    <string name="notification_user_liked">%1$s поставил лайк посту %2$s</string>
+    <string name="channel_remote_name">Уведомления с сервера</string>
+    <string name="channel_remote_description">Уведомления с удалённого сервера</string>
+    <string name="login_fail">Логин или пароль введены  некорректно</string>
+    <string name="login_success">Успех! Теперь попробуйте войти</string>
+
+
+</resources>

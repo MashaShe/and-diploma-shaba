@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">ShabaLink</string>
+
+    <string name="main_text">ShabaLink!</string>
+    <string name="headerText">Netology. Online University</string>
+    <string name="timeTextview">23 May, 18:36</string>
+    <string name="likesNum" translatable="false">5</string>
+    <string name="repostNum" translatable="false">2</string>
+    <string name="seenNum" translatable="false">500 K</string>
+    <string name="longTexview">" Помогаем расти в профессии и открывать новые карьерные горизонты💫\n\n
+        Нетология — это 4 уровня образования:\n\n
+        ✅ для начинающих, которые хотят освоить актуальную профессию с нуля
+        ✅ для специалистов, которые стремятся вырасти в карьере
+        ✅ для руководителей, которые нацелены усилить лидерские навыки
+        ✅ и для компаний, которым нужно обучить команду
+        Маркетинг, дизайн, программирование, soft skills, MBA, управление проектами, аналитика и data science — выбирайте,
+        что вам ближе и приходите к нам за знаниями и ростом.\n\n
+        Перемены — всегда правильный выбор👌🏻   http://netolo.gy/fEU "</string>
+
+    <string name="description_post_author_avatar">Post author avatar</string>
+    <string name="description_post_menu">Post menu</string>
+    <string name="description_post_like">Like</string>
+    <string name="description_post_share">Share</string>
+    <string name="description_post_seen">Seen</string>
+    <string name="description_post_save">Save</string>
+
+    <string name="error_empty_content">Content cannot be empty</string>
+    <string name="post_text">Enter text here</string>
+    <string name="editText">Edit Message</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_remove">Remove</string>
+    <string name="add_post">Add post</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="login_text">Log in</string>
+    <string name="login_note_text">Please enter your login and password below</string>
+    <string name="login_hint">Type your login (email address) here</string>
+    <string name="pass_hint">Type your password here</string>
+    <string name="log_in_button_text">Log in</string>
+    <string name="reg_button_text">Registration</string>
+
+    <string name="google_play_unavailable">Google Api Unavailable</string>
+    <string name="notification_user_liked">User %1$s liked %2$s\'s post</string>
+    <string name="channel_remote_name">Server notifications</string>
+    <string name="channel_remote_description">Notifications from remote server</string>
+    <string name="login_fail">User or password is incorrect</string>
+    <string name="login_success">Success! Now try to log in</string>
+
+</resources>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/common_spacing">
+    tools:context=".activity.RegistrationActivity">
+
+    <ImageView
+        android:id="@+id/welcomeIconImageView"
+        android:layout_width="@dimen/posts_avatar_size"
+        android:layout_height="@dimen/posts_avatar_size"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:contentDescription="welcome_icon"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@id/loginHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="30sp"
+        android:text="@string/login_text"
+        app:layout_constraintBottom_toTopOf="@+id/loginNoteTextView"
+        app:layout_constraintStart_toEndOf="@id/welcomeIconImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+       />
+
+    <TextView
+        android:id="@+id/loginNoteTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:text="@string/login_note_text"
+        app:layout_constraintBottom_toBottomOf="@id/loginHeader"
+        app:layout_constraintStart_toEndOf="@id/welcomeIconImageView"
+        app:layout_constraintTop_toBottomOf="@id/welcomeTextView"
+         />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/loginHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="welcomeIconImageView,loginNoteTextView, welcomeTextView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/loginHeader"
+        android:layout_marginTop="20dp"
+        >
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:ems="10"
+            android:foregroundTint="#E3AFAF"
+            android:hint="@string/login_hint"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
+
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:ems="10"
+            android:foregroundTint="#E3AFAF"
+            android:hint="@string/pass_hint"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/regButton"
+            app:layout_constraintStart_toStartOf="@+id/loginButton" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in_button_text"
+            app:layout_constraintStart_toStartOf="@+id/regButton"
+            tools:layout_editor_absoluteY="349dp" />
+
+        <Button
+            android:id="@+id/regButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/reg_button_text"
+            app:layout_constraintBottom_toTopOf="@+id/loginButton"
+            tools:layout_editor_absoluteX="71dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
