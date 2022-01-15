@@ -14,9 +14,19 @@ import com.example.and_diploma_shaba.entity.UserEntity
 interface UserDao {
     //TODO: в DAO описать работу со всеми атрибутами поста и дргиух классов
 
+    //@Query("SELECT * FROM UserEntity WHERE userLogin = :login ORDER BY userId DESC")
+    @Query("SELECT * FROM UserEntity WHERE userLogin = :login")
+    fun findMe(login: String): UserEntity
+
 
     @Query("SELECT userPass FROM UserEntity WHERE userId = :id")
     fun userPassById(id: Long): String
+
+    @Query("SELECT userLogin FROM UserEntity WHERE userId = :id")
+    fun userLoginById(id: Long): String
+
+    @Query("SELECT userLogin FROM UserEntity WHERE userId = :login")
+    fun userIdByLogin(login: String): Long
 
     @Query("SELECT * FROM UserEntity ORDER BY userId DESC")
     fun getAllUsers(): LiveData<List<UserEntity>>
@@ -25,7 +35,10 @@ interface UserDao {
     fun findByLogin(login: String?): UserEntity
 
     @Insert
-    fun addUser(user: UserEntity)
+    fun insert(user: UserEntity)
+
+//    fun save(user: UserEntity) =
+//        if (user.userId == 0L) insert(user) else updateContentById(user.usertId, post.postContent)
 
 
 }

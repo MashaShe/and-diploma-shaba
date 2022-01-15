@@ -49,6 +49,9 @@ class UserViewModel (application: Application) : AndroidViewModel(application) {
         }
         edited.value = AnonymousUser
     }
+
+    fun authorization(login: String) = repository.findMe(login)
+    fun userIdByLogin(login: String) = repository.userIdByLogin(login)
 }
 
 

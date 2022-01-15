@@ -31,24 +31,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.fragment_registration.*
 
 
-class RegistrationFragment : Fragment() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        FirebaseMessaging.getInstance().token.addOnSuccessListener {
-//            println("ТОКЕН: " + it)
-//        }
-//        setContentView(R.layout.fragment_registration)
-////        val view: View = inflater.inflate(R.layout.testclassfragment, container, false)
-////        Button loginButton =(Button)findViewById(R.id.loginButton)
-//        findViewById<Button>(R.id.loginButton).setOnClickListener {
-//            //Toast.makeText(this,"СПАСИБО!", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this@RegistrationFragment, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
-
-
-    private val viewModel: UserViewModel by viewModels(
+class RegistrationFragment_anotherTry : Fragment() {
+    val viewModel: UserViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
@@ -62,13 +46,8 @@ class RegistrationFragment : Fragment() {
             container,
             false
         )
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//       val binding = FragmentRegistrationBinding.bind(view)
-        //val binding = FragmentRegistrationBinding.inflate(layoutInflater)
-        with(binding) {
 
-            val initialUser = User(
+        val initialUser = User(
             userId = 0L,
             "testuser",
             "1",
@@ -78,19 +57,21 @@ class RegistrationFragment : Fragment() {
             // null,
             // userAuthorities = listOf("ROLE_ANONYMOUS")
         )
-            viewModel.addUser(initialUser)
+        viewModel.addUser(initialUser)
 
-            binding.userFirstName.text = "TESTISHE"
-            binding.userLastName.text = initialUser.userPass
+        binding.userFirstName.text = "TESTISHE"
+        binding.userLastName.text = initialUser.userPass
 
-            binding.loginButton.setOnClickListener {
+        val adapter = UserAdapter(object : OnInteractionListener {
+
+            override fun onLogin(user: User) {
                 val enteredLogin = binding.editTextTextEmailAddress.text
                 val enteredPass = binding.editTextTextPassword.text
-               // val user: User = viewModel.authorization(enteredLogin.toString())
-               // val users2: List<User>? = users.value
-              //  val user:User? = users2?.first()
-               // val user: User
-               // user = viewModel.authorization(enteredLogin.toString())
+                // val user: User = viewModel.authorization(enteredLogin.toString())
+                // val users2: List<User>? = users.value
+                //  val user:User? = users2?.first()
+                // val user: User
+                // user = viewModel.authorization(enteredLogin.toString())
 //                if (user.isNullOrEmpty()) {
 //                    Toast.makeText(
 //                        activity,
@@ -98,33 +79,37 @@ class RegistrationFragment : Fragment() {
 //                        Toast.LENGTH_SHORT
 //                    ).show()
 //                } else {
-              //  if (user?.userLogin == enteredLogin.toString() && user?.userPass == enteredPass.toString()) {
-                    if (viewModel.isAuthorized(viewModel.userIdByLogin(enteredLogin.toString()), enteredPass.toString())) {
+                //  if (user?.userLogin == enteredLogin.toString() && user?.userPass == enteredPass.toString()) {
+                if (viewModel.isAuthorized(
+                        viewModel.userIdByLogin(enteredLogin.toString()),
+                        enteredPass.toString()
+                    )
+                ) {
 
-                        val bundle = Bundle().apply {
-                            putString("AuthorLogin", enteredLogin.toString())
-                        }
-                        findNavController().navigate(
-                            R.id.action__registrationFragment_to_feedFragment,
-                            bundle
-                        )
-                        Toast.makeText(
-                            activity,
-                            "вошли",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    val bundle = Bundle().apply {
+                        putString("AuthorLogin", enteredLogin.toString())
                     }
+                    findNavController().navigate(
+                        R.id.action__registrationFragment_to_feedFragment,
+                        bundle
+                    )
                     Toast.makeText(
                         activity,
-                        "не вошли, но кнопка отработала",
+                        "вошли",
                         Toast.LENGTH_SHORT
                     ).show()
+                }
+                Toast.makeText(
+                    activity,
+                    "не вошли, но кнопка отработала",
+                    Toast.LENGTH_SHORT
+                ).show()
 
 
 //                }
             }
 
-            binding.regButton.setOnClickListener {
+            override fun onRegister(user: User) {
                 val enteredLogin = binding.editTextTextEmailAddress.text
                 val enteredPass = binding.editTextTextPassword.text
                 val userToAdd = User(
@@ -146,24 +131,23 @@ class RegistrationFragment : Fragment() {
 //                    ).show()
 //
 //                } else {
-                  //  userToAdd = user.first().copy(userLogin = enteredLogin.toString(), userPass = enteredPass.toString() )
-                    viewModel.addUser(userToAdd)
-                    Toast.makeText(
-                        activity,
-                        getString(R.string.login_success),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                //  userToAdd = user.first().copy(userLogin = enteredLogin.toString(), userPass = enteredPass.toString() )
+                viewModel.addUser(userToAdd)
+                Toast.makeText(
+                    activity,
+                    getString(R.string.login_success),
+                    Toast.LENGTH_SHORT
+                ).show()
                 //}
 
             }
 
-        }
-        val adapter = UserAdapter(object : OnInteractionListener {
-                    })
-       return binding.root
-        viewModel.data.observe(viewLifecycleOwner,{ users ->
-        adapter.submitList(users)
-    })
+        })
+
+        return binding.root
+        viewModel.data.observe(viewLifecycleOwner, { users ->
+            adapter.submitList(users)
+        })
     }
 }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/common_spacing">
-    tools:context=".activity.RegistrationActivity">
+    tools:context=".activity.RegistrationFragment">
 
     <ImageView
         android:id="@+id/welcomeIconImageView"
@@ -54,10 +54,46 @@
         app:constraint_referenced_ids="welcomeIconImageView,loginNoteTextView, welcomeTextView" />
 
     <LinearLayout
+        android:id="@+id/userInfoLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/loginHeader"
+        android:layout_marginTop="20dp"
+        tools:ignore="InvalidId">
+
+        <TextView
+            android:id="@+id/userFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_spacing"
+            android:layout_marginEnd="@dimen/common_spacing"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/loginHeader"
+            tools:text="Text from res"
+            tools:ignore="Suspicious0dp" />
+
+        <TextView
+            android:id="@+id/userLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_spacing"
+            android:layout_marginEnd="@dimen/common_spacing"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/userFirstName"
+            tools:text="Text from res"
+            tools:ignore="Suspicious0dp" />
+
+    </LinearLayout>>
+
+    <LinearLayout
+        android:id="@+id/userLoginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/userInfoLayout"
         android:layout_marginTop="20dp"
         >
 
@@ -70,7 +106,7 @@
             android:foregroundTint="#E3AFAF"
             android:hint="@string/login_hint"
             android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+            app:layout_constraintTop_toBottomOf="@+id/userLastName"
             app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
 
 

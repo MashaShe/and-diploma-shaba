@@ -37,6 +37,10 @@ class UserViewHolder(
     fun bind(user: User) {
         binding.apply {
 
+            userFirstName.text = user.userFirstName
+            userLastName.text = user.userLastName
+          //  editTextTextPassword.hint = user.userPass
+            
             loginButton.setOnClickListener{
                 onInteractionListener.onLogin(user)
             }

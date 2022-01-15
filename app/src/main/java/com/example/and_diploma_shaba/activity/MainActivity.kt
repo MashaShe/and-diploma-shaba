@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         //TODO проверить FCM
         // TODO подключить удаленную БД
 
-
-
         checkGoogleApiAvailability()
+
+
 
         intent?.let {
             if (it.action != Intent.ACTION_SEND) {

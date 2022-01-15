@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.and_diploma_shaba.dao.PostDao
 import com.example.and_diploma_shaba.dao.UserDao
+import com.example.and_diploma_shaba.dao.AuthDao
 import com.example.and_diploma_shaba.entity.PostEntity
 import com.example.and_diploma_shaba.entity.UserEntity
 
@@ -13,6 +14,7 @@ import com.example.and_diploma_shaba.entity.UserEntity
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun userDao(): UserDao
+    abstract fun authDao(): AuthDao
 
     companion object {
         @Volatile

@@ -1,44 +1,28 @@
 package com.example.and_diploma_shaba.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.and_diploma_shaba.dao.PostDao
+import com.example.and_diploma_shaba.dao.AuthDao
 import com.example.and_diploma_shaba.dao.UserDao
-import com.example.and_diploma_shaba.dto.Events
-import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.dto.User
-import com.example.and_diploma_shaba.entity.PostEntity
 import com.example.and_diploma_shaba.entity.UserEntity
-import com.example.and_diploma_shaba.entity.UserEntity.Companion.fromDto
-
-//TODO НЕ ОБНОВЛЕН под юзера
-
-class UserRepositoryImpl(
-    private val dao: UserDao,
-) : UserRepository {
+import org.w3c.dom.Entity
 
 
-    override fun getAllUsers() = Transformations.map(dao.getAllUsers()) { list ->
-        list.map {
-            User(
-                it.userId,
-                it.userLogin,
-                it.userPass,
-                it.userAvatar,
-                it.userFirstName,
-                it.userLastName//,
-              //  it.userBirthDate,
-               // it.userAuthorities
+class AuthRepositoryImpl(
+    private val dao: AuthDao
+    ): AuthRepository {
 
-            )
-        }
-    }
 
-    override fun findByLogin(login: String?) =  dao.findByLogin(login)
-
-    override fun addUser(user: User) {
-        dao.insert(UserEntity.fromDto(user))
-    }
+//    override fun findMe(login: String, enteredPass: String): User {
+//        dao.findMe(login)
+//
+//        var ifAuthorized = false
+//        val pass = userPassById(id)
+//        if (pass == enteredPass) {
+//            ifAuthorized = true
+//        }
+//        return ifAuthorized
+//    }
 
 //    override fun findMe(login: String) = Transformations.map(dao.findMe(login)){ list ->
 //        list.map{
@@ -56,9 +40,14 @@ class UserRepositoryImpl(
 //
 //    }
 
+    override fun addUser(user: User) {
+        dao.insert(UserEntity.fromDto(user))
+    }
+
     override fun findMe(login: String): User {
         return  dao.findMe(login).toDto()
     }
+
     override fun userPassById(id: Long): String {
         return dao.userPassById(id)
     }
@@ -69,5 +58,4 @@ class UserRepositoryImpl(
     override fun userIdByLogin(login: String): Long {
         return dao.userIdByLogin(login)
     }
-
-}
+ }
