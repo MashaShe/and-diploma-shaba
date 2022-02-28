@@ -17,7 +17,6 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
-
     </fragment>
 
     <fragment
@@ -39,6 +38,13 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_feedFragment_to_eventsFeedFragment"
+            app:destination="@id/eventsFeedFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
@@ -48,9 +54,57 @@
         tools:layout="@layout/fragment_new_post">
 
     </fragment>
+
     <fragment
         android:id="@+id/editPostFragment"
         android:name="com.example.and_diploma_shaba.activity.EditPostFragment"
         android:label="fragment_edit_post"
-        tools:layout="@layout/fragment_edit_post" />
+        tools:layout="@layout/fragment_edit_post" >
+   </fragment>
+
+    <fragment
+        android:id="@+id/eventsFeedFragment"
+        android:name="com.example.and_diploma_shaba.activity.EventsFeedFragment"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/fragment_edit_post" >
+
+        <action
+            android:id="@+id/action_eventsFeedFragment_to_feedFragment"
+            app:destination="@id/feedFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_eventsFeedFragment_to_newEventFragment"
+            app:destination="@id/newEventFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_eventsFeedFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newEventFragment"
+        android:name="com.example.and_diploma_shaba.activity.NewEventFragment"
+        android:label="fragment_new_post"
+        tools:layout="@layout/fragment_new_event">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="com.example.and_diploma_shaba.activity.EditEventFragment"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/fragment_edit_event" >
+    </fragment>
+
 </navigation>

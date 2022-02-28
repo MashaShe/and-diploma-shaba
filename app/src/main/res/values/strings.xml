@@ -44,5 +44,8 @@
     <string name="channel_remote_description">Notifications from remote server</string>
     <string name="login_fail">User or password is incorrect</string>
     <string name="login_success">Success! Now try to log in</string>
+    <string name="go_to_post_feed">go to post feed</string>
+    <string name="events_header">Events List</string>
+    <string name="posts_list">Posts list</string>
 
 </resources>

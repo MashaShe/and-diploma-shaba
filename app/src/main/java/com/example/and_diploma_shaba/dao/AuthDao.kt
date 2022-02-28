@@ -1,11 +1,8 @@
 package com.example.and_diploma_shaba.dao;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import com.example.and_diploma_shaba.dto.Events;
-import com.example.and_diploma_shaba.dto.User;
 import com.example.and_diploma_shaba.entity.UserEntity;
 
 @Dao

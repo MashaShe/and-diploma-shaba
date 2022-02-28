@@ -1,15 +1,9 @@
 package com.example.and_diploma_shaba.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.and_diploma_shaba.dao.PostDao
 import com.example.and_diploma_shaba.dao.UserDao
-import com.example.and_diploma_shaba.dto.Events
-import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.dto.User
-import com.example.and_diploma_shaba.entity.PostEntity
 import com.example.and_diploma_shaba.entity.UserEntity
-import com.example.and_diploma_shaba.entity.UserEntity.Companion.fromDto
 
 //TODO НЕ ОБНОВЛЕН под юзера
 

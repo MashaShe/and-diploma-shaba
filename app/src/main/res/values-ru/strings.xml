@@ -40,6 +40,9 @@
     <string name="channel_remote_description">Уведомления с удалённого сервера</string>
     <string name="login_fail">Логин или пароль введены  некорректно</string>
     <string name="login_success">Успех! Теперь попробуйте войти</string>
+    <string name="go_to_post_feed">go to post feed</string>
+    <string name="events_header">Мероприятия</string>
+    <string name="posts_list">Посты</string>
 
 
 </resources>

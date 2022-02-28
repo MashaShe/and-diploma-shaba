@@ -32,123 +32,123 @@ import kotlinx.android.synthetic.main.fragment_registration.*
 
 
 class RegistrationFragment_anotherTry : Fragment() {
-    val viewModel: UserViewModel by viewModels(
-        ownerProducer = ::requireParentFragment
-    )
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentRegistrationBinding.inflate(
-            inflater,
-            container,
-            false
-        )
-
-        val initialUser = User(
-            userId = 0L,
-            "testuser",
-            "1",
-            null,
-            "Anonymous",
-            "Anonymous"//,
-            // null,
-            // userAuthorities = listOf("ROLE_ANONYMOUS")
-        )
-        viewModel.addUser(initialUser)
-
-        binding.userFirstName.text = "TESTISHE"
-        binding.userLastName.text = initialUser.userPass
-
-        val adapter = UserAdapter(object : OnInteractionListener {
-
-            override fun onLogin(user: User) {
-                val enteredLogin = binding.editTextTextEmailAddress.text
-                val enteredPass = binding.editTextTextPassword.text
-                // val user: User = viewModel.authorization(enteredLogin.toString())
-                // val users2: List<User>? = users.value
-                //  val user:User? = users2?.first()
-                // val user: User
-                // user = viewModel.authorization(enteredLogin.toString())
-//                if (user.isNullOrEmpty()) {
-//                    Toast.makeText(
-//                        activity,
-//                        getString(R.string.login_fail),
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                } else {
-                //  if (user?.userLogin == enteredLogin.toString() && user?.userPass == enteredPass.toString()) {
-                if (viewModel.isAuthorized(
-                        viewModel.userIdByLogin(enteredLogin.toString()),
-                        enteredPass.toString()
-                    )
-                ) {
-
-                    val bundle = Bundle().apply {
-                        putString("AuthorLogin", enteredLogin.toString())
-                    }
-                    findNavController().navigate(
-                        R.id.action__registrationFragment_to_feedFragment,
-                        bundle
-                    )
-                    Toast.makeText(
-                        activity,
-                        "вошли",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                Toast.makeText(
-                    activity,
-                    "не вошли, но кнопка отработала",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-
-//                }
-            }
-
-            override fun onRegister(user: User) {
-                val enteredLogin = binding.editTextTextEmailAddress.text
-                val enteredPass = binding.editTextTextPassword.text
-                val userToAdd = User(
-                    userId = 0L,
-                    enteredLogin.toString(),
-                    enteredPass.toString(),
-                    null,
-                    "Anonymous",
-                    "Anonymous"//,
-                    // null,
-                    // userAuthorities = listOf("ROLE_ANONYMOUS")
-                )
-
-//                if (user.isNullOrEmpty()) {
-//                    Toast.makeText(
-//                        activity,
-//                        getString(R.string.login_fail),
-//                        Toast.LENGTH_SHORT
-//                    ).show()
+//    val viewModel: UserViewModel by viewModels(
+//        ownerProducer = ::requireParentFragment
+//    )
 //
-//                } else {
-                //  userToAdd = user.first().copy(userLogin = enteredLogin.toString(), userPass = enteredPass.toString() )
-                viewModel.addUser(userToAdd)
-                Toast.makeText(
-                    activity,
-                    getString(R.string.login_success),
-                    Toast.LENGTH_SHORT
-                ).show()
-                //}
-
-            }
-
-        })
-
-        return binding.root
-        viewModel.data.observe(viewLifecycleOwner, { users ->
-            adapter.submitList(users)
-        })
-    }
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        val binding = FragmentRegistrationBinding.inflate(
+//            inflater,
+//            container,
+//            false
+//        )
+//
+//        val initialUser = User(
+//            userId = 0L,
+//            "testuser",
+//            "1",
+//            null,
+//            "Anonymous",
+//            "Anonymous"//,
+//            // null,
+//            // userAuthorities = listOf("ROLE_ANONYMOUS")
+//        )
+//        viewModel.addUser(initialUser)
+//
+//        binding.userFirstName.text = "TESTISHE"
+//        binding.userLastName.text = initialUser.userPass
+//
+//        val adapter = UserAdapter(object : OnInteractionListener {
+//
+//            override fun onLogin(user: User) {
+//                val enteredLogin = binding.editTextTextEmailAddress.text
+//                val enteredPass = binding.editTextTextPassword.text
+//                // val user: User = viewModel.authorization(enteredLogin.toString())
+//                // val users2: List<User>? = users.value
+//                //  val user:User? = users2?.first()
+//                // val user: User
+//                // user = viewModel.authorization(enteredLogin.toString())
+////                if (user.isNullOrEmpty()) {
+////                    Toast.makeText(
+////                        activity,
+////                        getString(R.string.login_fail),
+////                        Toast.LENGTH_SHORT
+////                    ).show()
+////                } else {
+//                //  if (user?.userLogin == enteredLogin.toString() && user?.userPass == enteredPass.toString()) {
+//                if (viewModel.isAuthorized(
+//                     //   viewModel.userIdByLogin(enteredLogin.toString()),
+//                       // enteredPass.toString()
+//                    )
+//                ) {
+//
+//                    val bundle = Bundle().apply {
+//                       / putString("AuthorLogin", enteredLogin.toString())
+//                    }
+//                    findNavController().navigate(
+//                        R.id.action__registrationFragment_to_feedFragment,
+//                        bundle
+//                    )
+//                    Toast.makeText(
+//                        activity,
+//                        "вошли",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//                Toast.makeText(
+//                    activity,
+//                    "не вошли, но кнопка отработала",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//
+//
+////                }
+//            }
+//
+//            override fun onRegister(user: User) {
+//                val enteredLogin = binding.editTextTextEmailAddress.text
+//                val enteredPass = binding.editTextTextPassword.text
+//                val userToAdd = User(
+//                    userId = 0L,
+//                    enteredLogin.toString(),
+//                    enteredPass.toString(),
+//                    null,
+//                    "Anonymous",
+//                    "Anonymous"//,
+//                    // null,
+//                    // userAuthorities = listOf("ROLE_ANONYMOUS")
+//                )
+//
+////                if (user.isNullOrEmpty()) {
+////                    Toast.makeText(
+////                        activity,
+////                        getString(R.string.login_fail),
+////                        Toast.LENGTH_SHORT
+////                    ).show()
+////
+////                } else {
+//                //  userToAdd = user.first().copy(userLogin = enteredLogin.toString(), userPass = enteredPass.toString() )
+//                viewModel.addUser(userToAdd)
+//                Toast.makeText(
+//                    activity,
+//                    getString(R.string.login_success),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                //}
+//
+//            }
+//
+//        })
+//
+//        return binding.root
+//      //  viewModel.data.observe(viewLifecycleOwner, { users ->
+//       //     adapter.submitList(users)
+//       // })
+//    }
 }
 
 //--------------------commented below - uncomment if you werw wrong

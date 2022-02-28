@@ -1,8 +1,6 @@
 package com.example.and_diploma_shaba.repository
 
 import androidx.lifecycle.LiveData
-import com.example.and_diploma_shaba.dto.Events
-import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.dto.User
 import com.example.and_diploma_shaba.entity.UserEntity
 

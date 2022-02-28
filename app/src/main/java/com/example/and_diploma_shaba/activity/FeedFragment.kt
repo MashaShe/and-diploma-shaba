@@ -93,6 +93,10 @@ class FeedFragment : Fragment() {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
+        binding.goToEvent.setOnClickListener{
+            findNavController().navigate(R.id.action_feedFragment_to_eventsFeedFragment)
+        }
+
         return binding.root
     }
 }
