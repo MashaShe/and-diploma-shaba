@@ -16,7 +16,9 @@ import com.example.and_diploma_shaba.adapter.PostsAdapter
 import com.example.and_diploma_shaba.databinding.FragmentFeedBinding
 import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.viewmodel.PostViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class FeedFragment : Fragment() {
 

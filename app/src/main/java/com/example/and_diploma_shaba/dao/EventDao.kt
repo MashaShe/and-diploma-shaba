@@ -3,6 +3,7 @@ package com.example.and_diploma_shaba.dao
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.and_diploma_shaba.dto.Event
 import com.example.and_diploma_shaba.dto.Post
@@ -15,8 +16,11 @@ interface EventDao {
     @Query("SELECT * FROM EventEntity ORDER BY eventId DESC")
     fun getAll(): LiveData<List<EventEntity>>
 
-    @Insert
-    fun insert(event: EventEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(post: EventEntity) //suspend
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(posts: List<EventEntity>) //suspend
 
     @Query("UPDATE EventEntity SET eventContent = :content WHERE eventId = :id")
     fun updateContentById(id: Long, content: String)

@@ -3,6 +3,7 @@ package com.example.and_diploma_shaba.dao
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.and_diploma_shaba.entity.UserEntity
 
@@ -33,8 +34,12 @@ interface UserDao {
     @Insert
     fun insert(user: UserEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(user: List<UserEntity>) //suspend
 //    fun save(user: UserEntity) =
 //        if (user.userId == 0L) insert(user) else updateContentById(user.usertId, post.postContent)
 
+    @Query("DELETE FROM UserEntity")
+    suspend fun deleteAll()
 
 }

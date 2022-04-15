@@ -21,6 +21,9 @@ import com.example.and_diploma_shaba.dto.Event
 import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.viewmodel.EventViewModel
 import com.example.and_diploma_shaba.viewmodel.PostViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class EventsFeedFragment : Fragment() {
     private val viewModel: EventViewModel by viewModels(

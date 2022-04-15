@@ -25,7 +25,9 @@ import com.example.and_diploma_shaba.dto.User
 
 
 import com.google.firebase.messaging.FirebaseMessaging
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_registration.*
+@AndroidEntryPoint
 
 class UserViewFragment : Fragment() {
 //

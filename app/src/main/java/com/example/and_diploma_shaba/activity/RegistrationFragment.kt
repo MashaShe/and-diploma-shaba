@@ -5,26 +5,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.and_diploma_shaba.R
+import com.example.and_diploma_shaba.auth.AppAuth
 import com.example.and_diploma_shaba.databinding.FragmentRegistrationBinding
 import com.example.and_diploma_shaba.dto.User
 import com.example.and_diploma_shaba.util.AndroidUtils
-import com.example.and_diploma_shaba.viewmodel.UserViewModel
+import com.example.and_diploma_shaba.viewmodel.*
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
+import javax.inject.Inject
+
+@AndroidEntryPoint
+//@WithFragmentBindings
 
 class RegistrationFragment : Fragment() {
 
-    private val viewModel: UserViewModel by viewModels(
-        ownerProducer = ::requireParentFragment
+    private val viewModel: AuthViewModel by viewModels(
+        //ownerProducer = ::requireParentFragment
     )
+    @Inject
+    lateinit var appAuth: AppAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel.authData.observe(viewLifecycleOwner) {
+           // invalidateOptionsMenu(this)
+        }
         val binding = FragmentRegistrationBinding.inflate(
             inflater,
             container,
@@ -35,30 +48,43 @@ class RegistrationFragment : Fragment() {
             loginButton.setOnClickListener {
                 val enteredLogin = editTextTextEmailAddress.text.toString()
                 val enteredPass = editTextTextPassword.text.toString()
-                // Доступа к id у нас нет из UI, поэтому логин вместо id
-                if (viewModel.isAuthorized(enteredLogin, enteredPass)) {
-                    val bundle = Bundle().apply {
-                        // TODO Где взять имя?)
-                        //putString("AuthorName", user.userFirstName)
-                    }
-                    AndroidUtils.hideKeyboard(root)
-                    findNavController().navigate(
-                        R.id.action__registrationFragment_to_feedFragment,
-                        bundle
-                    )
-                } else {
-                    Toast.makeText(
-                        activity,
-                        getString(R.string.login_fail),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                viewModel.selectMyPage()
+                appAuth.authUser(enteredLogin, enteredPass)
+
+                Toast.makeText(
+                    activity,
+                    "прошли функции с логином",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+
+
+
+//                // Доступа к id у нас нет из UI, поэтому логин вместо id
+//                if (viewModel.isAuthorized(enteredLogin, enteredPass)) {
+//                    AppAuth.getInstance()
+//                    val bundle = Bundle().apply {
+//                        // TODO Где взять имя?)
+//                        //putString("AuthorName", user.userFirstName)
+//                    }
+//                    AndroidUtils.hideKeyboard(root)
+//                    findNavController().navigate(
+//                        R.id.action__registrationFragment_to_feedFragment,
+//                        bundle
+//                    )
+//                } else {
+//                    Toast.makeText(
+//                        activity,
+//                        getString(R.string.login_fail),
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
 
             regButton.setOnClickListener {
                 val enteredLogin = editTextTextEmailAddress.text.toString()
                 val enteredPass = editTextTextPassword.text.toString()
-                viewModel.addUser(User(userLogin = enteredLogin, userPass = enteredPass))
+               // viewModel.addUser(User(userLogin = enteredLogin, userPass = enteredPass))
                 Toast.makeText(
                     activity,
                     getString(R.string.login_success),

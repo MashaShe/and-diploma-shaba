@@ -14,7 +14,9 @@ import com.example.and_diploma_shaba.databinding.FragmentEditPostBinding
 import com.example.and_diploma_shaba.util.AndroidUtils
 import com.example.and_diploma_shaba.util.StringArg
 import com.example.and_diploma_shaba.viewmodel.PostViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class EditPostFragment : Fragment() {
     companion object {

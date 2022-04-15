@@ -1,20 +1,21 @@
 package com.example.and_diploma_shaba.api
 
 
-//import okhttp3.MultipartBody
-//import retrofit2.Response
-//import retrofit2.http.*
-//import com.example.and_diploma_shaba.dto.*
+import com.example.and_diploma_shaba.auth.AuthState
+import okhttp3.MultipartBody
+import retrofit2.Response
+import retrofit2.http.*
+import com.example.and_diploma_shaba.dto.*
 
 
 interface ApiService {
 
 //    //USER auth and login
-//    @Headers("Content-Type: application/x-www-form-urlencoded")
-//    @POST("users/authentication")
-//    suspend fun authMe (@Query("login") login: String,@Query("pass") pass: String)
-//            : Response<AuthState>
-//
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST("users/authentication")
+     fun authMe (@Query("login") login: String,@Query("pass") pass: String) //suspend
+            : Response<AuthState>
+
 //    @Multipart
 //    @POST("users/registration")
 //    suspend fun regMeAvatar (@Query("login") login: String,
@@ -27,9 +28,9 @@ interface ApiService {
 //    // trick to check am I authenticatificated
 //    @POST("posts/-555/likes")
 //    suspend fun checkToken(): Response<Unit>
-//
-//
-//    // JOBS
+
+
+    // JOBS
 //    @POST("my/jobs")
 //    suspend fun postJob(@Body jobReq: JobReq): Response<Unit>
 //
@@ -38,71 +39,71 @@ interface ApiService {
 //
 //    @GET("{id}/jobs")
 //    suspend fun getJobs(@Path("id") id : Long): Response<List<Job>>
-//
-//
-//
-//
-//    //EVENTS
-//    @GET("events")
-//    suspend fun getAllEvents(): Response<List<Event>>
-//
-//    @GET("events/{id}")
-//    suspend fun getEventById(@Path("id") id: Long): Response<Event>
-//
-//    @POST("events")
-//    suspend fun saveEvent(@Body event: Event): Response<Event>
-//
-//    @DELETE ("events/{id}")
-//    suspend fun deleteEvent(@Path("id") eventId: Long): Response<Unit>
-//
-//    @POST ("events/{id}/likes")
-//    suspend fun setLikeToEvent(@Path("id") id: Long): Response<Event>
-//
-//    @DELETE ("events/{id}/likes")
-//    suspend fun setDislikeToEvent(@Path("id") postId: Long): Response<Event>
-//
-//    @POST ("events/{id}/participants")
-//    suspend fun participateToEvent(@Path("id") id: Long): Response<Event>
-//
-//    @DELETE  ("events/{id}/participants")
-//    suspend fun doNotParticipateToEvent(@Path("id") id: Long): Response<Event>
-//
-//
-//
-//
-//
-//    //USERS
-//    @GET("users")
-//    suspend fun getAllUsers(): Response<List<User>>
-//
-//
-//    // POSTS
-//    @GET("posts")
-//    suspend fun getAllPosts(): Response<List<Post>>
-//
-//    @POST("posts")
-//    suspend fun savePost(@Body post: Post): Response<Post>
-//
-//    @GET("{id}/wall")
-//    suspend fun getWall(@Path("id") id: Long): Response<List<Post>>
-//
-//    @DELETE("posts/{id}")
-//    suspend fun removeById(@Path("id") id: Long): Response<Unit>
-//
-//    @DELETE ("posts/{postId}")
-//    suspend fun deletePost(@Path("postId") postId: Long): Response<Unit>
-//
-//    @POST ("posts/{postId}/likes")
-//    suspend fun setLikeToPost(@Path("postId") postId: Long): Response<Post>
-//
-//    @DELETE ("posts/{postId}/likes")
-//    suspend fun setDislikeToPost(@Path("postId") postId: Long): Response<Post>
-//
-//
-//
-//    // upload media
+
+
+
+
+    //EVENTS
+    @GET("events")
+     fun getAllEvents(): Response<List<Event>> //suspend
+
+    @GET("events/{id}")
+    suspend fun getEventById(@Path("id") id: Long): Response<Event>
+
+    @POST("events")
+    suspend fun saveEvent(@Body event: Event): Response<Event>
+
+    @DELETE ("events/{id}")
+    suspend fun deleteEvent(@Path("id") eventId: Long): Response<Unit>
+
+    @POST ("events/{id}/likes")
+    suspend fun setLikeToEvent(@Path("id") id: Long): Response<Event>
+
+    @DELETE ("events/{id}/likes")
+    suspend fun setDislikeToEvent(@Path("id") postId: Long): Response<Event>
+
+    @POST ("events/{id}/participants")
+    suspend fun participateToEvent(@Path("id") id: Long): Response<Event>
+
+    @DELETE  ("events/{id}/participants")
+    suspend fun doNotParticipateToEvent(@Path("id") id: Long): Response<Event>
+
+
+
+
+
+    //USERS
+    @GET("users")
+   fun getAllUsers(): Response<List<User>> //suspend
+
+
+    // POSTS
+    @GET("posts")
+    fun getAllPosts(): Response<List<Post>> //suspend
+
+    @POST("posts")
+    fun savePost(@Body post: Post): Response<Post> //suspend
+
+    @GET("{id}/wall")
+    fun getWall(@Path("id") id: Long): Response<List<Post>> //suspend
+
+    @DELETE("posts/{id}")
+    fun removeById(@Path("id") id: Long): Response<Unit> //suspend
+
+    @DELETE ("posts/{postId}")
+    suspend fun deletePost(@Path("postId") postId: Long): Response<Unit>
+
+    @POST ("posts/{postId}/likes")
+    suspend fun setLikeToPost(@Path("postId") postId: Long): Response<Post>
+
+    @DELETE ("posts/{postId}/likes")
+    suspend fun setDislikeToPost(@Path("postId") postId: Long): Response<Post>
+
+
+
+    // upload media
 //    @Multipart
 //    @POST("media")
 //    suspend fun upload(@Part media: MultipartBody.Part): Response<Media>
-//
+
 }

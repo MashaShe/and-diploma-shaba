@@ -46,3 +46,6 @@ data class UserEntity(
 
     }
 }
+
+fun List<UserEntity>.toDto(): List<User> = map(UserEntity::toDto)
+fun List<User>.toEntity(): List<UserEntity> = map(UserEntity::fromDto)

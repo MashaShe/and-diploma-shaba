@@ -3,6 +3,7 @@ package com.example.and_diploma_shaba.dao
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.entity.PostEntity
@@ -14,8 +15,11 @@ interface PostDao {
     @Query("SELECT * FROM PostEntity ORDER BY postId DESC")
     fun getAll(): LiveData<List<PostEntity>>
 
-    @Insert
-    fun insert(post: PostEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(post: PostEntity) //suspend
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(posts: List<PostEntity>) //suspend
 
     @Query("UPDATE PostEntity SET postContent = :content WHERE postId = :id")
     fun updateContentById(id: Long, content: String)
