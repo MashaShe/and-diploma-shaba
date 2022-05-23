@@ -40,15 +40,15 @@ class FeedFragment : Fragment() {
 
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onLike(post: Post) {
-                viewModel.likeById(post.postId)
+             //   viewModel.likeById(post.postId)
             }
 
             override fun onRemove(post: Post) {
-                viewModel.removeById(post.postId)
+             //   viewModel.removeById(post.postId)
             }
 
             override fun onRepost(post: Post) {
-                viewModel.repostById(post.postId)
+             //   viewModel.repostById(post.postId)
             }
 
 
@@ -81,15 +81,15 @@ class FeedFragment : Fragment() {
                 val bundle = Bundle().apply {
                     putString("postContent", post.postContent)
                 }
-                viewModel.edit(post)
+              //  viewModel.edit(post)
                 findNavController().navigate(R.id.action_feedFragment_to_editPostFragment, bundle)
             }
         })
 
         binding.list.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner, { posts ->
-            adapter.submitList(posts)
-        })
+        //viewModel.data.observe(viewLifecycleOwner, { posts ->
+         //   adapter.submitList(posts)
+       // })
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)

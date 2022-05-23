@@ -16,8 +16,8 @@ interface EventDao {
     @Query("SELECT * FROM EventEntity ORDER BY eventId DESC")
     fun getAll(): LiveData<List<EventEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(post: EventEntity) //suspend
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    fun insert(post: EventEntity) //suspend
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(posts: List<EventEntity>) //suspend
@@ -25,8 +25,8 @@ interface EventDao {
     @Query("UPDATE EventEntity SET eventContent = :content WHERE eventId = :id")
     fun updateContentById(id: Long, content: String)
 
-    fun save(event: EventEntity) =
-        if (event.eventId == 0L) insert(event) else updateContentById(event.eventId, event.eventContent)
+//    fun save(event: EventEntity) =
+//        if (event.eventId == 0L) insert(event) else updateContentById(event.eventId, event.eventContent)
 
 
     @Query("DELETE FROM EventEntity WHERE eventId = :id")

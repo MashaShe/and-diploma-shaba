@@ -3,17 +3,18 @@ package com.example.and_diploma_shaba.app
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
-import com.example.and_diploma_shaba.BuildConfig
 import com.yandex.mapkit.MapKitFactory
 //import com.yandex.mapkit.MapKitFactory
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-//  import ru.kot1.demo.BuildConfig
-import com.example.and_diploma_shaba.util.*
+import com.example.and_diploma_shaba.BuildConfig
+import com.example.and_diploma_shaba.util.RefreshPostsWorker
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
+
 
 @HiltAndroidApp
 class Application : Application(), Configuration.Provider {
@@ -25,7 +26,7 @@ class Application : Application(), Configuration.Provider {
         MapKitFactory.setApiKey(getKey())
     }
 
-     //private fun getKey() = BuildConfig.MAPKEY
+     private fun getKey() = BuildConfig.MAPKEY
 
     private fun setupWork() {
         appScope.launch {

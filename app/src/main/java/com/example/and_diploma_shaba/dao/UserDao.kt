@@ -1,6 +1,7 @@
 package com.example.and_diploma_shaba.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,23 +17,29 @@ interface UserDao {
     fun findMe(login: String): UserEntity
 
 
-    @Query("SELECT userPass FROM UserEntity WHERE userId = :id")
-    fun userPassById(id: Long): String
+//    @Query("SELECT userPass FROM UserEntity WHERE userId = :id")
+//    fun userPassById(id: Long): String
 
-    @Query("SELECT userLogin FROM UserEntity WHERE userId = :id")
-    fun userLoginById(id: Long): String
+//    @Query("SELECT userLogin FROM UserEntity WHERE userId = :id")
+//    fun userLoginById(id: Long): String
+//
+//    @Query("SELECT userLogin FROM UserEntity WHERE userId = :login")
+//    fun userIdByLogin(login: String): Long
 
-    @Query("SELECT userLogin FROM UserEntity WHERE userId = :login")
-    fun userIdByLogin(login: String): Long
+//    @Query("SELECT * FROM UserEntity ORDER BY userId DESC")
+//    fun getAllUsers(): LiveData<List<UserEntity>>
 
-    @Query("SELECT * FROM UserEntity ORDER BY userId DESC")
-    fun getAllUsers(): LiveData<List<UserEntity>>
+    @Query("SELECT * FROM UserEntity")
+    suspend fun getAllUsers(): List<UserEntity>
+
+    @Query("SELECT * FROM UserEntity")
+    fun getAll(): PagingSource<Int, UserEntity>
 
     @Query("SELECT * FROM UserEntity WHERE userLogin = :login")
     fun findByLogin(login: String?): UserEntity
 
-    @Insert
-    fun insert(user: UserEntity)
+//    @Insert
+//    fun insert(user: UserEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(user: List<UserEntity>) //suspend
@@ -41,5 +48,8 @@ interface UserDao {
 
     @Query("DELETE FROM UserEntity")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM UserEntity WHERE userid = :id")
+    fun getUser(id: Long): LiveData<List<UserEntity>>
 
 }

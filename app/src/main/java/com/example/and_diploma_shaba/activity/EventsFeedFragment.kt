@@ -19,16 +19,16 @@ import com.example.and_diploma_shaba.databinding.FragmentEventsFeedBinding
 import com.example.and_diploma_shaba.databinding.FragmentFeedBinding
 import com.example.and_diploma_shaba.dto.Event
 import com.example.and_diploma_shaba.dto.Post
-import com.example.and_diploma_shaba.viewmodel.EventViewModel
+//import com.example.and_diploma_shaba.viewmodel.EventViewModel
 import com.example.and_diploma_shaba.viewmodel.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
 class EventsFeedFragment : Fragment() {
-    private val viewModel: EventViewModel by viewModels(
-        ownerProducer = ::requireParentFragment
-    )
+   // private val viewModel: EventViewModel by viewModels(
+   //     ownerProducer = ::requireParentFragment
+   // )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +45,7 @@ class EventsFeedFragment : Fragment() {
         val adapter = EventAdapter(object : OnInteractionListener {
 
             override fun onRemove(event: Event) {
-                viewModel.removeById(event.eventId)
+                //viewModel.removeById(event.eventId)
             }
 
 
@@ -53,15 +53,15 @@ class EventsFeedFragment : Fragment() {
                 val bundle = Bundle().apply {
                     putString("eventContent", event.eventContent)
                 }
-                viewModel.edit(event)
+               // viewModel.edit(event)
                 findNavController().navigate(R.id.action_eventsFeedFragment_to_editEventFragment, bundle)
             }
         })
 
         binding.eventList.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner, { events ->
-            adapter.submitList(events)
-        })
+//        viewModel.data.observe(viewLifecycleOwner, { events ->
+//            adapter.submitList(events)
+//        })
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_eventsFeedFragment_to_newEventFragment)

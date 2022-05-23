@@ -3,36 +3,49 @@ package com.example.and_diploma_shaba.adapter
 import android.util.Log
 import androidx.paging.*
 import androidx.room.withTransaction
+import com.example.and_diploma_shaba.api.ApiError
 import com.example.and_diploma_shaba.api.ApiService
 import com.example.and_diploma_shaba.db.AppDb
-import com.example.and_diploma_shaba.entity.UserEntity
-import com.example.and_diploma_shaba.entity.UserKeyEntry
-import com.example.and_diploma_shaba.api.ApiError
+import com.example.and_diploma_shaba.entity.PostEntity
+import com.example.and_diploma_shaba.entity.PostKeyEntry
 import com.example.and_diploma_shaba.repository.AppNetState
 import com.example.and_diploma_shaba.repository.AuthMethods
 
 
 @ExperimentalPagingApi
-class UserRemoteMediator(private val api: ApiService,
+class PostRemoteMediator(private val api: ApiService,
                          private val base: AppDb,
-                         private val repoNetwork: AuthMethods
+                         private val repoNetwork: AuthMethods,
+
 )
-    : RemoteMediator<Int, UserEntity>() {
+    : RemoteMediator<Int, PostEntity>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, UserEntity>
+        state: PagingState<Int, PostEntity>
             ): MediatorResult {
-
         try {
             val connected = repoNetwork.checkConnection() == AppNetState.CONNECTION_ESTABLISHED
 
             if (connected) {
                 val response = when (loadType) {
                     else -> {
-                        base.userDao().deleteAll()
-                        api.getAllUsers()
+                        base.postDao().deleteAll()
+                        //api.getLatestPosts(state.config.pageSize)
+                        api.getAllPosts()
                     }
+                    /*   LoadType.REFRESH -> {
+                      base.postDao().deleteAll()
+                      api.getLatestPosts(state.config.pageSize)
+                  }
+                  LoadType.APPEND -> {
+                      val id = base.keyWorkDao().min() ?: return MediatorResult.Success(false)
+                     // api.getBeforePosts(id, state.config.pageSize)
+                  }
+                  LoadType.PREPEND -> {
+                      val id = base.keyWorkDao().max() ?: return MediatorResult.Success(false)
+                    //  api.getAfterPosts(id, state.config.pageSize)
+                  }*/
                 }
 
                 if (!response.isSuccessful) {
@@ -46,42 +59,43 @@ class UserRemoteMediator(private val api: ApiService,
 
                 if (body.isEmpty()) {
                     return MediatorResult.Success(true)
+
                 }
 
                 base.withTransaction {
                     when (loadType) {
                         LoadType.REFRESH -> {
-                            base.keyUserPaginationDao().insert(
+                            base.keyPostPaginationDao().insert(
                                 listOf(
-                                    UserKeyEntry(
-                                        UserKeyEntry.Type.PREPEND,
-                                        body.first().userId
+                                    PostKeyEntry(
+                                        PostKeyEntry.Type.PREPEND,
+                                        body.first().postId
                                     ),
-                                    UserKeyEntry(
-                                        UserKeyEntry.Type.APPEND,
-                                        body.last().userId
+                                    PostKeyEntry(
+                                        PostKeyEntry.Type.APPEND,
+                                        body.last().postId
                                     )
                                 )
                             )
-                            base.userDao().deleteAll()
+                            base.postDao().deleteAll()
                         }
                         LoadType.PREPEND -> {
-                            base.keyUserPaginationDao().insert(
+                            base.keyPostPaginationDao().insert(
                                 listOf(
-                                    UserKeyEntry(
-                                        UserKeyEntry.Type.PREPEND,
-                                        body.first().userId
+                                    PostKeyEntry(
+                                        PostKeyEntry.Type.PREPEND,
+                                        body.first().postId
                                     ),
                                 )
                             )
 
                         }
                         LoadType.APPEND -> {
-                            base.keyUserPaginationDao().insert(
+                            base.keyPostPaginationDao().insert(
                                 listOf(
-                                    UserKeyEntry(
-                                        UserKeyEntry.Type.APPEND,
-                                        body.last().userId
+                                    PostKeyEntry(
+                                        PostKeyEntry.Type.APPEND,
+                                        body.last().postId
                                     )
                                 )
                             )
@@ -89,7 +103,7 @@ class UserRemoteMediator(private val api: ApiService,
                         }
                     }
 
-                    base.userDao().insert(body.map(UserEntity.Companion::fromDto))
+                    base.postDao().insert(body.map(PostEntity.Companion::fromDto))
                 }
 
 

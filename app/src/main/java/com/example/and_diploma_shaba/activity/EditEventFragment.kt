@@ -14,7 +14,7 @@ import com.example.and_diploma_shaba.databinding.FragmentEditEventBinding
 import com.example.and_diploma_shaba.databinding.FragmentEditPostBinding
 import com.example.and_diploma_shaba.util.AndroidUtils
 import com.example.and_diploma_shaba.util.StringArg
-import com.example.and_diploma_shaba.viewmodel.EventViewModel
+//import com.example.and_diploma_shaba.viewmodel.EventViewModel
 import com.example.and_diploma_shaba.viewmodel.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,9 +25,9 @@ class EditEventFragment : Fragment() {
         var Bundle.textArg: String? by StringArg
     }
 
-    private val viewModel: EventViewModel by viewModels(
-        ownerProducer = ::requireParentFragment
-    )
+//    private val viewModel: EventViewModel by viewModels(
+//        ownerProducer = ::requireParentFragment
+//    )
 
     //TODO сделать кнопку отменить для редактирования и создания поста
     // TODO проверить как убирается клавиатура и убрать - см комменты в конце
@@ -59,8 +59,8 @@ class EditEventFragment : Fragment() {
             } else {
 
                 val content = binding.edit.text.toString()
-                viewModel.changeContent(content)
-                viewModel.save()
+                //viewModel.changeContent(content)
+               // viewModel.save()
                 AndroidUtils.hideKeyboard(requireView())
                 findNavController().navigateUp()
             }

@@ -22,7 +22,7 @@ import com.example.and_diploma_shaba.adapter.UserAdapter
 import com.example.and_diploma_shaba.databinding.FragmentFeedBinding
 import com.example.and_diploma_shaba.databinding.FragmentRegistrationBinding
 import com.example.and_diploma_shaba.dto.Post
-import com.example.and_diploma_shaba.viewmodel.UserViewModel
+//import com.example.and_diploma_shaba.viewmodel.UserViewModel
 import com.example.and_diploma_shaba.dto.User
 import com.example.and_diploma_shaba.viewmodel.AuthViewModel
 

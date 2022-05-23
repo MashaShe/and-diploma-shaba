@@ -3,17 +3,24 @@ package com.example.and_diploma_shaba.db
 import android.content.Context
 import androidx.room.*
 import com.example.and_diploma_shaba.dao.*
-import com.example.and_diploma_shaba.entity.EventEntity
-import com.example.and_diploma_shaba.entity.PostEntity
-import com.example.and_diploma_shaba.entity.UserEntity
+import com.example.and_diploma_shaba.entity.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
-@Database(entities = [PostEntity::class, UserEntity::class, EventEntity::class], version = 5, exportSchema = false)
+@Database(entities = [PostEntity::class, UserEntity::class, //EventEntity::class,
+    PostKeyEntry::class, PostWorkEntity::class,UserKeyEntry::class], version = 10, exportSchema = false)
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun userDao(): UserDao
     abstract fun authDao(): AuthDao
-    abstract fun eventDao(): EventDao
+    //abstract fun eventDao(): EventDao
+
+    abstract fun postWorkDao(): PostWorkDao
+
     abstract fun keyUserPaginationDao(): UserPaginationKeyDao
+    abstract fun keyPostPaginationDao(): PostPaginationKeyDao
+
 
     companion object {
         @Volatile
@@ -31,4 +38,36 @@ abstract class AppDb : RoomDatabase() {
                 .allowMainThreadQueries()
                 .build()
     }
+}
+
+class Converters {
+
+    @TypeConverter
+    fun listToJson(value: List<String>?) = Gson().toJson(value)
+
+    @TypeConverter
+    fun fromString(value: String?): ArrayList<String?>? {
+        val listType: Type = object : TypeToken<ArrayList<String?>?>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun fromArrayList(list: ArrayList<String?>?): String? {
+        val gson = Gson()
+        return gson.toJson(list)
+    }
+
+
+    @TypeConverter
+    fun toLongList(value: String?): ArrayList<Long>? {
+        val listType: Type = object : TypeToken<ArrayList<Long>?>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun toStringFromLong(list: List<Long>?): String? {
+        val gson = Gson()
+        return gson.toJson(list)
+    }
+
 }

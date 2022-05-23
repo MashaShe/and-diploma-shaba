@@ -1,7 +1,8 @@
 package com.example.and_diploma_shaba.api
 
 
-import com.example.and_diploma_shaba.auth.AuthState
+import android.provider.MediaStore
+import com.example.and_diploma_shaba.dto.AuthState
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -16,18 +17,18 @@ interface ApiService {
      fun authMe (@Query("login") login: String,@Query("pass") pass: String) //suspend
             : Response<AuthState>
 
-//    @Multipart
-//    @POST("users/registration")
-//    suspend fun regMeAvatar (@Query("login") login: String,
-//                             @Query("pass") pass: String,
-//                             @Query("name") name: String,
-//                             @Part media: MultipartBody.Part?
-//    )
-//            : Response<AuthState>
-//
-//    // trick to check am I authenticatificated
-//    @POST("posts/-555/likes")
-//    suspend fun checkToken(): Response<Unit>
+    @Multipart
+    @POST("users/registration")
+    suspend fun regMeAvatar (@Query("login") login: String,
+                             @Query("pass") pass: String,
+                             @Query("name") name: String,
+                             @Part media: MultipartBody.Part?
+    )
+            : Response<AuthState>
+
+    // trick to check am I authenticatificated
+    @POST("posts/-555/likes")
+    suspend fun checkToken(): Response<Unit>
 
 
     // JOBS
@@ -102,8 +103,8 @@ interface ApiService {
 
 
     // upload media
-//    @Multipart
-//    @POST("media")
-//    suspend fun upload(@Part media: MultipartBody.Part): Response<Media>
+    @Multipart
+    @POST("media")
+    suspend fun upload(@Part media: MultipartBody.Part): Response<MediaStore.Images.Media>
 
 }

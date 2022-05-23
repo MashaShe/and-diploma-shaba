@@ -13,7 +13,7 @@ import com.example.and_diploma_shaba.databinding.FragmentNewEventBinding
 import com.example.and_diploma_shaba.databinding.FragmentNewPostBinding
 import com.example.and_diploma_shaba.util.AndroidUtils
 import com.example.and_diploma_shaba.util.StringArg
-import com.example.and_diploma_shaba.viewmodel.EventViewModel
+//import com.example.and_diploma_shaba.viewmodel.EventViewModel
 import com.example.and_diploma_shaba.viewmodel.PostViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,9 +25,9 @@ class NewEventFragment : Fragment() {
         var Bundle.textArg: String? by StringArg
     }
 
-    private val viewModel: EventViewModel by viewModels(
-        ownerProducer = ::requireParentFragment
-    )
+//    private val viewModel: EventViewModel by viewModels(
+//        ownerProducer = ::requireParentFragment
+//    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,8 +53,8 @@ class NewEventFragment : Fragment() {
 
             } else {
                 val content = binding.edit.text.toString()
-                viewModel.changeContent(content)
-                viewModel.save()
+               // viewModel.changeContent(content)
+               // viewModel.save()
                 AndroidUtils.hideKeyboard(requireView())
                 findNavController().navigateUp()
             }

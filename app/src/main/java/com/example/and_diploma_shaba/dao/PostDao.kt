@@ -1,6 +1,7 @@
 package com.example.and_diploma_shaba.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -15,6 +16,9 @@ interface PostDao {
     @Query("SELECT * FROM PostEntity ORDER BY postId DESC")
     fun getAll(): LiveData<List<PostEntity>>
 
+    @Query("SELECT * FROM PostEntity ORDER BY postid DESC")
+    fun getAllPosts(): PagingSource<Int, PostEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(post: PostEntity) //suspend
 
@@ -24,8 +28,8 @@ interface PostDao {
     @Query("UPDATE PostEntity SET postContent = :content WHERE postId = :id")
     fun updateContentById(id: Long, content: String)
 
-    fun save(post: PostEntity) =
-        if (post.postId == 0L) insert(post) else updateContentById(post.postId, post.postContent)
+//    fun save(post: PostEntity) =
+//        if (post.postId == 0L) insert(post) else updateContentById(post.postId, post.postContent)
 
     @Query("""
         UPDATE PostEntity SET
@@ -50,5 +54,9 @@ interface PostDao {
     @Query("SELECT * FROM PostEntity WHERE authorId = :id ORDER BY postPublishedDate DESC")
     fun getAllUserPostsById(id: Long):LiveData<List<Post>>
 
+    @Query("DELETE FROM PostEntity")
+    suspend fun deleteAll()
 
+    @Query("SELECT * FROM PostEntity WHERE postid = :id LIMIT 1")
+    suspend fun getPost(id: Long): PostEntity
 }

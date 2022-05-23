@@ -115,18 +115,47 @@ android {
 
     //
 
-    buildTypes {
+//    buildTypes {
+//
+//        def Properties properties = new Properties()
+//        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+//
+//        release {
+//            minifyEnabled false
+//          //  proguardFiles getDefaultProguardFile('proguard-androi1d-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField "String", "BASE_URL", '"https://and-diploma-shaba.herokuapp.com"'
+//            buildConfigField "String", "MAPKEY", properties.getProperty("yandexMapKey", "") //
+//        }
+//    }
 
-        def Properties properties = new Properties()
+
+    defaultConfig {
+        applicationId "com.example.and_diploma_shaba"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField("String", "MAPKEY", "\"${properties.getProperty("yandexMapKey", "")}\"")
+        buildConfigField("String", "BASE_URL", '"https://and-diploma-shaba.herokuapp.com"')
+        //buildConfigField("String", "MAPKEY", properties.getProperty("yandexMapKey", ""))
+    }
+
+
+    //
+
+    buildTypes {
 
         release {
             minifyEnabled false
-          //  proguardFiles getDefaultProguardFile('proguard-androi1d-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", '"https://and-diploma-shaba.herokuapp.com"'
-            buildConfigField "String", "MAPKEY", properties.getProperty("yandexMapKey", "") //
+            //  proguardFiles getDefaultProguardFile('proguard-androi1d-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
 
     buildFeatures {
         viewBinding = true
@@ -274,3 +303,8 @@ dependencies {
 
 
 }
+//compileKotlin {
+//    kotlinOptions {
+//        languageVersion = "1.5"
+//    }
+//}

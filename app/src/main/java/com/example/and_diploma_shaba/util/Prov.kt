@@ -19,18 +19,17 @@ import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.and_diploma_shaba.BuildConfig
+//import com.example.and_diploma_shaba.BuildConfig
 import com.example.and_diploma_shaba.api.ApiService
 import com.example.and_diploma_shaba.auth.AppAuth
 import com.example.and_diploma_shaba.db.AppDb
 import com.example.and_diploma_shaba.repository.*
-import com.example.and_diploma_shaba.util.ModuleForSingleton.BASE_URL
+//import com.example.and_diploma_shaba.util.ModuleForSingleton.BASE_URL
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -46,7 +45,7 @@ internal object ModuleForViewModel {
 @InstallIn(SingletonComponent::class)
 internal object ModuleForSingleton {
 
-    private const val BASE_URL = "${BuildConfig.BASE_URL}/api/"
+   // private const val BASE_URL = "${BuildConfig.BASE_URL}/api/"
     // /api/slow/"
 
 
@@ -57,12 +56,12 @@ internal object ModuleForSingleton {
         api: ApiService,
         @ApplicationContext context: Context,
         @Named("DownloadClient") downloadClient: OkHttpClient
-    ): AuthRepository =
-        AuthRepositoryImpl(db, api, context, downloadClient)
+    ): AppEntities =
+        AppRepositoryImpl(db, api, context, downloadClient)
 
     @Singleton
     @Provides
-    fun getRepositoryInet(repo: AuthRepository) = repo as AuthMethods
+    fun getRepositoryInet(repo: AppEntities) = repo as AuthMethods
 
     @Singleton
     @Provides
@@ -73,7 +72,7 @@ internal object ModuleForSingleton {
     fun getAppAuth(
         @ApplicationContext context: Context,
         api: ApiService,
-        repo: AuthRepository,
+        repo: AppEntities,
         prefs: SharedPreferences
     ): AppAuth {
         return AppAuth(context, api, repo, prefs)
@@ -116,7 +115,7 @@ internal object ModuleForSingleton {
         .connectTimeout(55, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(logging)
+        //.addInterceptor(logging)
         .addInterceptor { chain ->
             if (AppAuth.sessionKey != null) {
                 val newRequest = chain.request().newBuilder()
@@ -127,18 +126,18 @@ internal object ModuleForSingleton {
 
             chain.proceed(chain.request())
         }.apply {
-            if (BuildConfig.DEBUG) {
-                addInterceptor(OkHttpProfilerInterceptor())
-            }
+//            if (BuildConfig.DEBUG) {
+//                addInterceptor(OkHttpProfilerInterceptor())
+//            }
         }
         .build()
 
 
-    private val logging = HttpLoggingInterceptor().apply {
-        if (BuildConfig.DEBUG) {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-    }
+//    private val logging = HttpLoggingInterceptor().apply {
+//        if (BuildConfig.DEBUG) {
+//            level = HttpLoggingInterceptor.Level.BODY
+//        }
+//    }
 }
 
 

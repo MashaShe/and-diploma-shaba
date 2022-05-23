@@ -1,11 +1,14 @@
 package com.example.and_diploma_shaba.entity
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+//import com.example.and_diploma_shaba.dto.Attachment
+//import com.example.and_diploma_shaba.dto.Coords
 import com.example.and_diploma_shaba.dto.Post
-
 @Entity
-data class PostEntity(
+data class PostWorkEntity(
     @PrimaryKey(autoGenerate = true)
     val postId: Long,
     val authorId: Long? = null,
@@ -43,7 +46,7 @@ data class PostEntity(
 
     companion object {
         fun fromDto(dto: Post) =
-            PostEntity(
+            PostWorkEntity(
                 dto.postId,
                 dto.authorId,
                 dto.postAuthor,
@@ -61,7 +64,3 @@ data class PostEntity(
 
     }
 }
-
-fun List<PostEntity>.toDto(): List<Post> = map(PostEntity::toDto)
-fun List<Post>.toEntity(): List<PostEntity> = map(PostEntity::fromDto)
-

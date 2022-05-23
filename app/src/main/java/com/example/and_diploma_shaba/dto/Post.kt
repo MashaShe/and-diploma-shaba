@@ -13,7 +13,9 @@ data class Post (
     val postSeen: Int = postLikes + rePosts,
     val video: String? = null,
     val postAttachmentURL: String? ="netology.jpg",
-    val postAttachmentType: String? = "IMAGE"
+    val postAttachmentType: String? = "IMAGE",
+    val logined : Boolean = false
 
-)
+
+    )
 

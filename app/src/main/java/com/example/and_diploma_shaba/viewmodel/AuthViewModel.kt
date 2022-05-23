@@ -2,13 +2,13 @@ package com.example.and_diploma_shaba.viewmodel
 
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+//import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import com.example.and_diploma_shaba.auth.AppAuth
-import com.example.and_diploma_shaba.auth.AuthState
+import com.example.and_diploma_shaba.dto.AuthState
 import com.example.and_diploma_shaba.model.SingleLiveEvent
 import javax.inject.Inject
 

@@ -49,7 +49,7 @@ class RegistrationFragment : Fragment() {
                 val enteredLogin = editTextTextEmailAddress.text.toString()
                 val enteredPass = editTextTextPassword.text.toString()
                 viewModel.selectMyPage()
-                appAuth.authUser(enteredLogin, enteredPass)
+              //  appAuth.authUser(enteredLogin, enteredPass)
 
                 Toast.makeText(
                     activity,
