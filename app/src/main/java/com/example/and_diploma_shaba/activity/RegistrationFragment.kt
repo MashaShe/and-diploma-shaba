@@ -18,6 +18,9 @@ import com.example.and_diploma_shaba.viewmodel.*
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import javax.inject.Inject
+import com.example.and_diploma_shaba.activity.utils.Dialog
+import com.example.and_diploma_shaba.activity.utils.showAuthResultDialog
+import com.example.and_diploma_shaba.activity.utils.showLoginAuthDialog
 
 @AndroidEntryPoint
 //@WithFragmentBindings
@@ -44,19 +47,41 @@ class RegistrationFragment : Fragment() {
             false
         )
 
-        with(binding) {
-            loginButton.setOnClickListener {
-                val enteredLogin = editTextTextEmailAddress.text.toString()
-                val enteredPass = editTextTextPassword.text.toString()
-                viewModel.selectMyPage()
-              //  appAuth.authUser(enteredLogin, enteredPass)
+//        with(binding) {
+//            loginButton.setOnClickListener {
+//                val enteredLogin = editTextTextEmailAddress.text.toString()
+//                val enteredPass = editTextTextPassword.text.toString()
+//                viewModel.selectMyPage()
+//                appAuth.authUser(enteredLogin, enteredPass){
+//                  //  showAuthResultDialog(it)
+//                    viewModel.markMyPageAlreadyOpened()
+//                    Toast.makeText(
+//                        activity,
+//                        "Залогинен!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//
+//            }
+//            regButton.setOnClickListener {
+//                val enteredLogin = editTextTextEmailAddress.text.toString()
+//                val enteredPass = editTextTextPassword.text.toString()
+//                 appAuth.newUserRegistration(enteredLogin,enteredPass,"Test","http://ya.ru"){
+//                     viewModel.markMyPageAlreadyOpened()
+//                     Toast.makeText(
+//                         activity,
+//                         getString(R.string.login_success),
+//                         Toast.LENGTH_SHORT
+//                     ).show()
+//            }
+//
+//            }
+//        }
 
-                Toast.makeText(
-                    activity,
-                    "прошли функции с логином",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        return binding.root
+    }
+
+}
 
 
 
@@ -81,22 +106,7 @@ class RegistrationFragment : Fragment() {
 //                }
 //            }
 
-            regButton.setOnClickListener {
-                val enteredLogin = editTextTextEmailAddress.text.toString()
-                val enteredPass = editTextTextPassword.text.toString()
-               // viewModel.addUser(User(userLogin = enteredLogin, userPass = enteredPass))
-                Toast.makeText(
-                    activity,
-                    getString(R.string.login_success),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
 
-        return binding.root
-    }
-
-}
 
 
 

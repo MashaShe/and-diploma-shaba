@@ -40,14 +40,14 @@ class UserViewHolder(
             userFirstName.text = user.userFirstName
             userLastName.text = user.userLastName
           //  editTextTextPassword.hint = user.userPass
-            
-            loginButton.setOnClickListener{
-                onInteractionListener.onLogin(user)
-            }
 
-            regButton.setOnClickListener {
-                onInteractionListener.onRegister(user)
-            }
+//            loginButton.setOnClickListener{
+//                onInteractionListener.onLogin(user)
+//            }
+//
+//            regButton.setOnClickListener {
+//                onInteractionListener.onRegister(user)
+//            }
         }
     }
 }

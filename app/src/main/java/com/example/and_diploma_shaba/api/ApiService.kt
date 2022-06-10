@@ -14,7 +14,7 @@ interface ApiService {
 //    //USER auth and login
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST("users/authentication")
-     fun authMe (@Query("login") login: String,@Query("pass") pass: String) //suspend
+    suspend fun authMe (@Query("login") login: String,@Query("pass") pass: String) //suspend
             : Response<AuthState>
 
     @Multipart
@@ -22,7 +22,7 @@ interface ApiService {
     suspend fun regMeAvatar (@Query("login") login: String,
                              @Query("pass") pass: String,
                              @Query("name") name: String,
-                             @Part media: MultipartBody.Part?
+                           //  @Part media: MultipartBody.Part?
     )
             : Response<AuthState>
 
@@ -75,7 +75,7 @@ interface ApiService {
 
     //USERS
     @GET("users")
-   fun getAllUsers(): Response<List<User>> //suspend
+    suspend fun  getAllUsers(): Response<List<User>>
 
 
     // POSTS

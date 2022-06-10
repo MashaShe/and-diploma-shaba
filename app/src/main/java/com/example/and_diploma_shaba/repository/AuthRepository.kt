@@ -46,7 +46,7 @@ interface AuthMethods {
     login: String,
     pass: String,
     name: String,
-    uri : String? = null,
+    //uri : String? = null,
     success: (id: Long, token: String) -> Unit
   )
 }

@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
     </style> -->
 
     <style name="Widget.AppTheme.IconButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
@@ -29,6 +33,28 @@
         <item name="android:minWidth">@dimen/icon_button_min_size</item>
         <item name="android:minHeight">@dimen/icon_button_min_size</item>
     </style>
+
+
+    <style name="AppTheme.AppBarOverlayX" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColorPrimary">#9E9E9E</item>
+        <item name="android:textColorSecondary">#9E9E9E</item>
+    </style>
+
+
+    <style name="AppTheme.PopupOverlayX" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:colorBackground">#312A2A</item>
+        <item name="android:background">#434141</item>
+        <item name="android:popupBackground">#535151</item>
+        <item name="android:itemBackground">#2C312C</item>
+
+        <item name="android:textColor">#FFFCFC</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 
 
 </resources>

@@ -47,5 +47,27 @@
     <string name="go_to_post_feed">go to post feed</string>
     <string name="events_header">Events List</string>
     <string name="posts_list">Posts list</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+
+    <string name="enter_dialog">Authorization</string>
+    <string name="error_dialog_auth_internet">No internet connection</string>
+    <string name="error_dialog_auth_server">Server is unavalable</string>
+    <string name="error_dialog_auth_success">Authorization succeeded</string>
+    <string name="error_dialog_auth_nouser">Cannot find such user</string>
+    <string name="error_dialog_auth_incpass">Incorrect password</string>
+    <string name="error_dialog_auth_server_error">Server has returned error (500)</string>
+
+
+
+    <string name="tab_text_1">Users</string>
+    <string name="tab_text_2">Posts</string>
+    <string name="tab_text_3">Events</string>
+    <string name="tab_text_4">About</string>
+    <string name="tab_text_0">My page</string>
+
+    <string name="loading">LOADING...</string>
+    <string name="proceed">work offline</string>
+    <string name="name_hint">type your name for registration</string>
 
 </resources>

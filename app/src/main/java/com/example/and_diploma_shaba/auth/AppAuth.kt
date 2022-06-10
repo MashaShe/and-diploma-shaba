@@ -117,14 +117,15 @@ class AppAuth @Inject constructor(
         login: String,
         pass: String,
         name: String,
-        uri: String? = null,
+       // uri: String? = null,
         callBack: (AppNetState) -> Unit
     ) =
         CoroutineScope(Dispatchers.Default).launch {
             when (repository.checkConnection()) {
                 AppNetState.CONNECTION_ESTABLISHED -> {
                     try {
-                        repository.regNewUser(login, pass, name, uri) { id, token ->
+                        repository.regNewUser(login, pass, name//, uri
+                        ) { id, token ->
                             removeAuth()
                             setAuth(id, token)
                             Handler(Looper.getMainLooper()).post {

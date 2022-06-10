@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 @Database(entities = [PostEntity::class, UserEntity::class, //EventEntity::class,
-    PostKeyEntry::class, PostWorkEntity::class,UserKeyEntry::class], version = 10, exportSchema = false)
+    PostKeyEntry::class, PostWorkEntity::class,UserKeyEntry::class], version = 13, exportSchema = false)
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun userDao(): UserDao

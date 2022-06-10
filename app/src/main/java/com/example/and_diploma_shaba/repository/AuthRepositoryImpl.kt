@@ -202,7 +202,7 @@ class AppRepositoryImpl(
         login: String,
         pass: String,
         name: String,
-        uri : String?,
+       // uri : String?,
         successCase: (id: Long, token: String) -> Unit) {
 
         tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
@@ -216,7 +216,8 @@ class AppRepositoryImpl(
 //                    "file", uploadMedia.file.name, uploadMedia.file.asRequestBody())
 //            }
 
-            val response = api.regMeAvatar(login, pass, name, media)
+            val response = api.regMeAvatar(login, pass, name//, media
+                )
 
             val body = response.body()
             if (!response.isSuccessful) {
