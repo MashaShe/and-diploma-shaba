@@ -202,7 +202,7 @@ class AppRepositoryImpl(
         login: String,
         pass: String,
         name: String,
-       // uri : String?,
+        uri : String?,
         successCase: (id: Long, token: String) -> Unit) {
 
         tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
@@ -210,13 +210,13 @@ class AppRepositoryImpl(
                 .addFormDataPart("", "")
                 .build().part(0)
 
-//            if (uri != null) {
-//                val uploadMedia = (Uri.parse(uri).toFile())
-//                media = MultipartBody.Part.createFormData(
-//                    "file", uploadMedia.file.name, uploadMedia.file.asRequestBody())
-//            }
+            if (uri != null) {
+                val uploadMedia = (Uri.parse(uri).toFile())
+                media = MultipartBody.Part.createFormData(
+                    "file", uploadMedia.name, uploadMedia.asRequestBody())
+            }
 
-            val response = api.regMeAvatar(login, pass, name//, media
+            val response = api.regMeAvatar(login, pass, name, media
                 )
 
             val body = response.body()

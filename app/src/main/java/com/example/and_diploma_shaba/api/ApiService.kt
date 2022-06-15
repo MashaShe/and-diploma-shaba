@@ -22,7 +22,7 @@ interface ApiService {
     suspend fun regMeAvatar (@Query("login") login: String,
                              @Query("pass") pass: String,
                              @Query("name") name: String,
-                           //  @Part media: MultipartBody.Part?
+                             @Part media: MultipartBody.Part?
     )
             : Response<AuthState>
 
