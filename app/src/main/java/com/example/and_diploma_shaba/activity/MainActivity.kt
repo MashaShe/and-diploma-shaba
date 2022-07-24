@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //                replaceFragment(EventsFeedFragment::class.java, bundle)
 //            }
 //
-//            setFragmentResultListener("keyWall", this@MainActivity) { _, bundle ->
-//                replaceFragment(FeedFragment::class.java, bundle)
-//            }
+            setFragmentResultListener("keyWall", this@MainActivity) { _, bundle ->
+                replaceFragment(PostsFragment::class.java, bundle)
+            }
 
 //            setFragmentResultListener("keyJobs", this@MainActivity) { _, bundle ->
 //                replaceFragment(JobFragment::class.java, bundle)
@@ -70,9 +70,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //                replaceFragment(NewJobFragment::class.java, bundle)
 //            }
 
-//            setFragmentResultListener("keyNewPost", this@MainActivity) { _, bundle ->
-//                replaceFragment(NewPostFragment::class.java, bundle)
-//            }
+            setFragmentResultListener("keyNewPost", this@MainActivity) { _, bundle ->
+                replaceFragment(NewPostFragment::class.java, bundle)
+            }
 //            setFragmentResultListener("keyNewEvent", this@MainActivity) { _, bundle ->
 //                replaceFragment(NewEventFragment::class.java, bundle)
   //          }
@@ -148,10 +148,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 true
             }
 
-//            R.id.signout -> {
-//                appAuth.removeAuth()
-//                true
-//            }
+            R.id.signout -> {
+                appAuth.removeAuth()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == ImagePicker.RESULT_ERROR) {
-           // Snackbar.make(findViewById(R.id.root), ImagePicker.getError(data), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(findViewById(R.id.root), ImagePicker.getError(data), Snackbar.LENGTH_LONG).show()
             return
         }
         if (resultCode == Activity.RESULT_OK && requestCode ==  photoRequestCode ){

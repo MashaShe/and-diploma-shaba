@@ -140,7 +140,7 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         buildConfigField("String", "MAPKEY", "\"${properties.getProperty("yandexMapKey", "")}\"")
-        buildConfigField("String", "BASE_URL", '"https://and-diploma-shaba.herokuapp.com"')
+        buildConfigField("String", "BASE_URL", '"https://and-diploma-shaba.herokuapp.com/api/"')
         //buildConfigField("String", "MAPKEY", properties.getProperty("yandexMapKey", ""))
     }
 

@@ -33,6 +33,8 @@
     <string name="pass_hint">Введите свой пароль</string>
     <string name="log_in_button_text">Войти</string>
     <string name="reg_button_text">Регистрация</string>
+    <string name="sign_out">Выйти</string>
+
 
     <string name="google_play_unavailable">Google Api Недоступно</string>
     <string name="notification_user_liked">%1$s поставил лайк посту %2$s</string>

@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.and_diploma_shaba.activity.FeedFragment"
+        android:name="com.example.and_diploma_shaba.activity.PostsAllFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed">
         <action

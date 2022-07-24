@@ -20,7 +20,9 @@ data class PostEntity(
     val video: String? = null,
     val postAttachmentURL: String? = null,
     val postAttachmentType: String? = null,
-    val logined: Boolean = false
+    val logined: Boolean = false,
+    val ownedByMe: Boolean = false
+
 
     //TODO: в DAO описать работу со всеми атрибутами поста и дргиух классов
 ) {
@@ -38,7 +40,9 @@ data class PostEntity(
         video,
         postAttachmentURL,
         postAttachmentType,
-        logined
+        logined,
+        ownedByMe
+
     )
 
     companion object {
@@ -57,7 +61,8 @@ data class PostEntity(
                 dto.video,
                 dto.postAttachmentURL,
                 dto.postAttachmentType,
-                dto.logined)
+                dto.logined,
+                dto.ownedByMe)
 
     }
 }

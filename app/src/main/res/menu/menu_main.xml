@@ -10,6 +10,10 @@
             android:id="@+id/signup"
             android:title="@string/reg_button_text"
             app:showAsAction="never" />
+        <item
+            android:id="@+id/signout"
+            android:title="@string/sign_out"
+            app:showAsAction="never" />
     </group>
 <!--    <group android:id="@+id/authenticated">
         <item

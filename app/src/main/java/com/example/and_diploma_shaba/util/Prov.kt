@@ -30,6 +30,7 @@ import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
+import com.example.and_diploma_shaba.BuildConfig.BASE_URL
 
 @Module
 @InstallIn(ViewModelComponent::class)

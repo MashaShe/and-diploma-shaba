@@ -30,6 +30,7 @@ import okhttp3.OkHttpClient
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
 import okio.Buffer
 import okio.BufferedSink
 import okio.buffer
@@ -41,6 +42,7 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.util.*
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 
 class AppRepositoryImpl(
@@ -216,8 +218,15 @@ class AppRepositoryImpl(
                     "file", uploadMedia.name, uploadMedia.asRequestBody())
             }
 
-            val response = api.regMeAvatar(login, pass, name, media
-                )
+//            val response = api.regMeAvatar(login, pass, name, media
+//                )
+            123456
+            val response = api.regMeAvatar(
+                login.toRequestBody("text/plain".toMediaType()),
+                pass.toRequestBody("text/plain".toMediaType()),
+                name.toRequestBody("text/plain".toMediaType()),
+                media
+            )
 
             val body = response.body()
             if (!response.isSuccessful) {
@@ -225,6 +234,7 @@ class AppRepositoryImpl(
             }
             if (body?.token != null) {
                 successCase(body.id, body.token)
+                //////
             }
         }
     }
@@ -411,8 +421,9 @@ class AppRepositoryImpl(
             postSeen = entity.postSeen,
             video = entity.video,
             postAttachmentURL = entity.postAttachmentURL,
-            postAttachmentType = entity.postAttachmentType
-
+            postAttachmentType = entity.postAttachmentType,
+            logined = entity.logined,
+            ownedByMe = entity.ownedByMe
 //            attachment = entity.attachment,
 //            coords = entity.coords,
 //            likeOwnerIds = entity.likeOwnerIds,

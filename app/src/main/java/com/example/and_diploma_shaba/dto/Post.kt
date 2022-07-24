@@ -14,7 +14,9 @@ data class Post (
     val video: String? = null,
     val postAttachmentURL: String? ="netology.jpg",
     val postAttachmentType: String? = "IMAGE",
-    val logined : Boolean = false
+    val logined : Boolean = false,
+    val ownedByMe: Boolean = false
+
 
 
     )

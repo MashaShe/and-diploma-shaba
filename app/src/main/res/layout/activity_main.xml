@@ -44,7 +44,7 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.fragment.app.FragmentContainerView
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:name="com.example.and_diploma_shaba.activity.MainFragment"
         android:id="@+id/fragment_container_view"
         android:layout_width="0dp"
         android:layout_height="0dp"

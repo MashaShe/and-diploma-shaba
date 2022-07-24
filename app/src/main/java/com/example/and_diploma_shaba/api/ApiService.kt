@@ -7,6 +7,7 @@ import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 import com.example.and_diploma_shaba.dto.*
+import okhttp3.RequestBody
 
 
 interface ApiService {
@@ -19,9 +20,9 @@ interface ApiService {
 
     @Multipart
     @POST("users/registration")
-    suspend fun regMeAvatar (@Query("login") login: String,
-                             @Query("pass") pass: String,
-                             @Query("name") name: String,
+    suspend fun regMeAvatar (@Part("login") login: RequestBody,
+                             @Part("pass") pass: RequestBody,
+                             @Part("name") name: RequestBody,
                              @Part media: MultipartBody.Part?
     )
             : Response<AuthState>

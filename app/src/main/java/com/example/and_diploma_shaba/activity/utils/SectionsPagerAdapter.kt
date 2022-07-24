@@ -33,11 +33,11 @@ class SectionsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) 
 //           2 -> PostsAllFragment()
 //           3 -> EventsAllFragment()
 //           4 -> AboutFragment()
-              0 -> FeedFragment()
+              0 -> PostsAllFragment()
               1 -> EventsFeedFragment()
               2 -> NewEventFragment()
               3 -> NewPostFragment()
-              4 -> FeedFragment()
+              4 ->PostsAllFragment()// FeedFragment()
            else -> throw  UnsupportedClassVersionError()
        }
     }

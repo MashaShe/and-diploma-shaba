@@ -6,7 +6,7 @@ import com.example.and_diploma_shaba.dto.User
 
 interface OnInteractionListener {
     fun onLike(post: Post) {}
-    fun onEdit(post: Post) {}
+    fun onEdit(post: Post, position: Int) {}
     fun onRemove(post: Post) {}
     fun onEdit(event: Event) {}
     fun onRemove(event: Event) {}

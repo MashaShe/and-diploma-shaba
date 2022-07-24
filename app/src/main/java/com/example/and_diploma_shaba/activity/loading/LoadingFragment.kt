@@ -20,13 +20,14 @@ import com.example.and_diploma_shaba.repository.AuthMethods
 import com.example.and_diploma_shaba.viewmodel.UsersViewModel
 import javax.inject.Inject
 import com.example.and_diploma_shaba.activity.MainActivity
+import com.example.and_diploma_shaba.viewmodel.PostAllViewModel
 
 
 @AndroidEntryPoint
 class LoadingFragment : Fragment(R.layout.fragment_loading) {
 
     private val usersVM: UsersViewModel by activityViewModels()
-   // private val postsVM: PostAllViewModel by activityViewModels()
+    private val postsVM: PostAllViewModel by activityViewModels()
    // private val eventsVM: EventAllViewModel by activityViewModels()
 
     @Inject
@@ -51,7 +52,7 @@ class LoadingFragment : Fragment(R.layout.fragment_loading) {
                         }, 6000)
                         appAuth.checkAmLogined()
                         usersVM.loadUsers()
-                       // postsVM.loadPosts()
+                        postsVM.loadPosts()
                        // eventsVM.loadEvents()
                         requireActivity().runOnUiThread {
                             Handler(Looper.getMainLooper()).postDelayed({

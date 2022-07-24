@@ -37,6 +37,8 @@
     <string name="pass_hint">Type your password here</string>
     <string name="log_in_button_text">Log in</string>
     <string name="reg_button_text">Registration</string>
+    <string name="sign_out">Sign out</string>
+
 
     <string name="google_play_unavailable">Google Api Unavailable</string>
     <string name="notification_user_liked">User %1$s liked %2$s\'s post</string>
