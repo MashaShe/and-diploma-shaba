@@ -52,7 +52,6 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
 
-    <string name="enter_dialog">Authorization</string>
     <string name="error_dialog_auth_internet">No internet connection</string>
     <string name="error_dialog_auth_server">Server is unavalable</string>
     <string name="error_dialog_auth_success">Authorization succeeded</string>
@@ -71,5 +70,34 @@
     <string name="loading">LOADING...</string>
     <string name="proceed">work offline</string>
     <string name="name_hint">type your name for registration</string>
+
+
+
+
+    <string name="login_first">To see your page login first</string>
+    <string name="click_refresh">Error occured. Pull the page down to refresh</string>
+    <string name="see_my_events">edit my events</string>
+    <string name="aboutLink">To see what this application is about, click About tab</string>
+    <string name="enter_dialog">Authorization</string>
+    <string name="seeEvents"><u>see events</u></string>
+    <string name="empty_records">No records</string>
+    <string name="error_occured">Error occured during data fetching</string>
+    <string name="error_loading">Error loading data</string>
+    <string name="retry_loading">Retry</string>
+    <string name="menu_save">Save</string>
+    <string name="enter_anything">Enter anything to save</string>
+    <string name="post_soon">Your post will appear soon</string>
+    <string name="edit_post">Edit post</string>
+    <string name="new_post">New post</string>
+    <string name="write_your_post">Write your post</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

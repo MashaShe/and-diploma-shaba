@@ -278,6 +278,12 @@ dependencies {
     implementation "com.github.dhaval2404:imagepicker:$imagepicker_version"
     implementation "androidx.work:work-runtime-ktx:$workmanager_version"
 
+    configurations {
+        implementation.exclude module:'proto-google-common-protos'
+        implementation.exclude module:'protolite-well-known-types'
+        implementation.exclude module:'protobuf-lite'
+    }
+
     testImplementation "junit:junit:$junit_version"
 //    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
 //    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"

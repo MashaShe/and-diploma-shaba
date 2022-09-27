@@ -24,7 +24,7 @@ package="com.example.and_diploma_shaba">
     >
 
     <activity android:name=".activity.loading.LoadingActivity">
-        <nav-graph android:value="@navigation/nav_main" />
+     <!--   <nav-graph android:value="@navigation/nav_main" /> -->
 
         <intent-filter>
             <action android:name="android.intent.action.SEND" />

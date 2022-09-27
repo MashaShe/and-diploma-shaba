@@ -15,6 +15,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.and_diploma_shaba.R
 import com.example.and_diploma_shaba.activity.utils.SectionsPagerAdapter
+import com.example.and_diploma_shaba.activity.utils.TAB_ICONS
 import com.example.and_diploma_shaba.activity.utils.TAB_TITLES
 import com.example.and_diploma_shaba.databinding.FragmentMainBinding
 import com.example.and_diploma_shaba.repository.AppEntities
@@ -23,7 +24,7 @@ import com.example.and_diploma_shaba.viewmodel.AuthViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.fragment_main) {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -64,7 +65,7 @@ class MainFragment : Fragment() {
 
         TabLayoutMediator(binding.tabs, binding.pager) { tab, position ->
             tab.setText(TAB_TITLES[position])
-          //  tab.setIcon(TAB_ICONS[position])
+            tab.setIcon(TAB_ICONS[position])
         }.attach()
 
         binding.pager.setCurrentItem(repo.getSavedViewPagerPage(), false)

@@ -353,10 +353,10 @@ class AppRepositoryImpl(
     //-------------------------- Posts / Media upload-------------------------------------
 
 
-//    override suspend fun savePostForWorker(post: Post, uri: String?, type: String?): Long {
-//        val entity = PostWorkEntity.fromDto(post)
-//        return base.postWorkDao().insert(entity.copy(mediaUri = uri, mediaType = type))
-//    }
+    override suspend fun savePostForWorker(post: Post, uri: String?, type: String?): Long {
+        val entity = PostWorkEntity.fromDto(post)
+        return base.postWorkDao().insert(entity.copy(postAttachmentURL = uri, postAttachmentType = type))
+    }
     //РАЗОБРАТЬСЯ С МЕДИА В ПОСТАХ И АВАТАРКЕ СМ ЕНТИТИ И ДАО, НЕ ЗАВЕДЕНЫ медиа параметры поста и аватара
 
 

@@ -93,7 +93,7 @@ interface PostRepository {
   suspend fun disLikeById(id: Long)
   suspend fun likeById(id: Long)
   //suspend fun uploadMfileToServer(upload: String): String
- // suspend fun savePostForWorker(post: Post, uri: String?, type: String?) : Long
+  suspend fun savePostForWorker(post: Post, uri: String?, type: String?) : Long
   suspend fun processPostWork(task: Array<String>)
   suspend fun sendDeletePost(id: Long)
   suspend fun getPostById(id: Long): PostEntity

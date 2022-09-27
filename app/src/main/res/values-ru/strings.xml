@@ -65,6 +65,26 @@
     <string name="loading">LOADING...</string>
     <string name="proceed">work offline</string>
     <string name="name_hint">type your name for registration</string>
+    <string name="login_first">Войдите, чтобы увидеть страницу</string>
+    <string name="click_refresh">Ошибка, обновите страницу, потянув вниз</string>
+    <string name="see_my_events">Посмотреть мои события</string>
+    <string name="aboutLink">Нажимите для деталей</string>
+    <string name="seeEvents"><u>Посмотреть события </u></string>
+    <string name="empty_records">Нет записей</string>
+    <string name="error_occured">Ошибка при загрузке данных</string>
+    <string name="error_loading">Ошибка загрузки данных</string>
+    <string name="retry_loading">Повторная попытка</string>
+    <string name="menu_save">Сохранить</string>
+    <string name="enter_anything">Введите информацию для сохранения</string>
+    <string name="post_soon">Ваш пост скоро появится</string>
+
+    <string name="edit_post">Изменить пост</string>
+    <string name="new_post">Новый пост</string>
+    <string name="write_your_post">Напишите текст поста</string>
+
+
+
+
 
 
 </resources>

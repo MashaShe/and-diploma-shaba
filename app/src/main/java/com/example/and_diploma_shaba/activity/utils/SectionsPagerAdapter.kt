@@ -13,13 +13,13 @@ import com.example.and_diploma_shaba.activity.*
     R.string.tab_text_4,
 )
 
-//val  TAB_ICONS = arrayOf(
-//    R.drawable.ic_baseline_user_placeholder,
-//    R.drawable.users,
-//    R.drawable.posts,
-//    R.drawable.events,
-//    R.drawable.ic_about,
-//)
+val  TAB_ICONS = arrayOf(
+    R.drawable.ic_baseline_user_placeholder,
+    R.drawable.users,
+    R.drawable.posts,
+    R.drawable.events,
+    R.drawable.ic_about,
+)
 
 
 

@@ -21,3 +21,20 @@ data class Post (
 
     )
 
+val empty = Post(
+    postId = 0,
+    authorId = null,
+    postAuthor = "",
+    authorAvatar = null,
+    postContent = "",
+    postPublishedDate = "",
+    postLikes = 0,
+    postLikedByMe = false,
+    rePosts = 0,
+//postSeen = postLikes + rePosts,
+    video = null,
+    postAttachmentURL = "netology.jpg",
+    postAttachmentType = "IMAGE",
+    logined = false,
+    ownedByMe = false
+)

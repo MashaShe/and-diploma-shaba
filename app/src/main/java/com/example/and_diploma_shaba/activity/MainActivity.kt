@@ -16,7 +16,7 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.messaging.FirebaseMessaging
 import com.example.and_diploma_shaba.R
-import com.example.and_diploma_shaba.activity.NewPostFragment.Companion.textArg
+//import com.example.and_diploma_shaba.activity.NewPostFragment.Companion.textArg
 import com.example.and_diploma_shaba.auth.AppAuth
 import com.example.and_diploma_shaba.viewmodel.AuthViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         with(supportFragmentManager) {
             setFragmentResultListener("keyMainFragment", this@MainActivity) { _, bundle ->
-                replaceFragment(RegistrationFragment::class.java, bundle)
+                replaceFragment(MainFragment::class.java, bundle)
             }
 
 //            setFragmentResultListener("keyEvents", this@MainActivity) { _, bundle ->
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         menu?.let {
             it.setGroupVisible(R.id.unauthenticated, !viewModel.authenticated)
-           // it.setGroupVisible(R.id.authenticated, viewModel.authenticated)
+            it.setGroupVisible(R.id.authenticated, viewModel.authenticated)
         }
         return true
     }

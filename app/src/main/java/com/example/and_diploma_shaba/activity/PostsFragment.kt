@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import com.example.and_diploma_shaba.R
+import com.example.and_diploma_shaba.activity.utils.PagingLoadStateAdapter
 import com.example.and_diploma_shaba.adapter.OnInteractionListener
 //import com.example.and_diploma_shaba.activity.utils.PagingLoadStateAdapter
 import com.example.and_diploma_shaba.activity.utils.prepareIntent
@@ -99,10 +100,10 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
         })
 
 
-//        binding.postList.adapter = adapter.withLoadStateHeaderAndFooter(
-//            header = PagingLoadStateAdapter(adapter::retry),
-//            footer = PagingLoadStateAdapter(adapter::retry)
-//        )
+        binding.postList.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(adapter::retry),
+            footer = PagingLoadStateAdapter(adapter::retry)
+        )
 
 
         arguments?.getLong("user")?.let {
@@ -132,25 +133,25 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
 
 
         viewModel.dataState.observe(viewLifecycleOwner) { state ->
-           // binding.swiperefresh.isRefreshing = state.refreshing
-         //   binding.progress.isVisible = state.loading && !binding.swiperefresh.isVisible
+            binding.swiperefresh.isRefreshing = state.refreshing
+            binding.progress.isVisible = state.loading && !binding.swiperefresh.isVisible
 
-//            if (state.error) {
-//                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
-//                    .setAction(R.string.retry_loading) { viewModel.refreshPosts() }
-//                    .show()
-//            }
+            if (state.error) {
+                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.retry_loading) { viewModel.refreshPosts() }
+                    .show()
+            }
         }
 
         lifecycleScope.launchWhenCreated {
-//            adapter.loadStateFlow.collectLatest { states ->
-//                binding.swiperefresh.isRefreshing = states.refresh is LoadState.Loading
-//
-//                if (states.refresh is LoadState.NotLoading){
-//                binding.emptyText?.isVisible = adapter.itemCount == 0
-//            }
+            adapter.loadStateFlow.collectLatest { states ->
+                binding.swiperefresh.isRefreshing = states.refresh is LoadState.Loading
 
- //           }
+                if (states.refresh is LoadState.NotLoading){
+                binding.emptyText?.isVisible = adapter.itemCount == 0
+            }
+
+            }
         }
 
 
@@ -164,9 +165,9 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
 
 
 
-//        binding.swiperefresh.setOnRefreshListener {
-//            viewModel.refreshPosts()
-//        }
+        binding.swiperefresh.setOnRefreshListener {
+            viewModel.refreshPosts()
+        }
 
 
 

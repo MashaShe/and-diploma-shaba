@@ -23,7 +23,7 @@ import com.example.and_diploma_shaba.activity.utils.showAuthResultDialog
 import com.example.and_diploma_shaba.activity.utils.showLoginAuthDialog
 
 @AndroidEntryPoint
-//@WithFragmentBindings
+@WithFragmentBindings
 
 class RegistrationFragment : Fragment() {
 
