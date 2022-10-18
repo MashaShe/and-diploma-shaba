@@ -10,7 +10,7 @@ import com.example.and_diploma_shaba.activity.*
     R.string.tab_text_1,
     R.string.tab_text_2,
     R.string.tab_text_3,
-    R.string.tab_text_4,
+   // R.string.tab_text_4,
 )
 
 val  TAB_ICONS = arrayOf(
@@ -18,7 +18,7 @@ val  TAB_ICONS = arrayOf(
     R.drawable.users,
     R.drawable.posts,
     R.drawable.events,
-    R.drawable.ic_about,
+   // R.drawable.ic_about,
 )
 
 
@@ -28,16 +28,16 @@ class SectionsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) 
 
     override fun createFragment(position: Int): Fragment {
           return when (position) {
-//           0 -> MyPageFragment()
-//           1 -> UsersFragment()
-//           2 -> PostsAllFragment()
-//           3 -> EventsAllFragment()
-//           4 -> AboutFragment()
-              0 -> PostsAllFragment()
-              1 -> EventsFeedFragment()
-              2 -> NewEventFragment()
-              3 -> NewPostFragment()
-              4 ->PostsAllFragment()// FeedFragment()
+           0 -> MyPageFragment()
+           1 -> UsersFragment()
+           2 -> PostsAllFragment()
+           3 -> EventsFeedFragment()
+          // 4 -> AboutFragment()
+//              0 -> PostsAllFragment()
+//              1 -> EventsFeedFragment()
+//              2 -> NewEventFragment()
+//              3 -> NewPostFragment()
+             // 4 ->PostsAllFragment()// FeedFragment()
            else -> throw  UnsupportedClassVersionError()
        }
     }

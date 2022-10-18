@@ -52,11 +52,11 @@ class EventViewHolder(
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.remove -> {
-                                onInteractionListener.onRemove(event)
+                               // onInteractionListener.onRemove(event)
                                 true
                             }
                             R.id.edit -> {
-                                onInteractionListener.onEdit(event)
+                               // onInteractionListener.onEdit(event)
                                 true
                             }
 

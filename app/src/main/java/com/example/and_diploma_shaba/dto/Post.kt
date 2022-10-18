@@ -15,7 +15,9 @@ data class Post (
     val postAttachmentURL: String? ="netology.jpg",
     val postAttachmentType: String? = "IMAGE",
     val logined : Boolean = false,
-    val ownedByMe: Boolean = false
+    val ownedByMe: Boolean = false,
+    var isLoading : Boolean = false
+
 
 
 
@@ -31,10 +33,12 @@ val empty = Post(
     postLikes = 0,
     postLikedByMe = false,
     rePosts = 0,
-//postSeen = postLikes + rePosts,
+    //postSeen = postLikes + rePosts,
     video = null,
     postAttachmentURL = "netology.jpg",
     postAttachmentType = "IMAGE",
     logined = false,
-    ownedByMe = false
+    ownedByMe = false,
+    isLoading  = false
+
 )

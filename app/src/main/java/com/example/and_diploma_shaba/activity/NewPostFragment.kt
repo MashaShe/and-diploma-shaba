@@ -36,6 +36,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 
 @AndroidEntryPoint
 class NewPostFragment : Fragment(R.layout.fragment_new_post) {
+
     private val viewModel: EditPostViewModel by activityViewModels()
    // private val mwPostViewModel: MediaWorkPostViewModel by activityViewModels()
 
@@ -137,28 +138,28 @@ class NewPostFragment : Fragment(R.layout.fragment_new_post) {
             binding.edit.setText(text)
         }
 
-//        viewModel.coords.observe(viewLifecycleOwner) {
-//            binding.placePanel.isVisible = it != null
-//        }
+        viewModel.coords.observe(viewLifecycleOwner) {
+            binding.placePanel.isVisible = it != null
+        }
 
-//        viewModel.attach.observe(viewLifecycleOwner) {
-//            if (it == null) {
-//                binding.previewPanel.visibility = View.GONE
-//            } else {
-//                binding.previewPanel.visibility = View.VISIBLE
-//                when (it.dataType) {
-//                    AttachmentType.IMAGE -> {
-//                        if (it.uri != null) {
-//                            binding.previewPhoto.setImageURI(it.uri)
-//                        } else {
-//                            binding.previewPhoto.setImageResource(R.drawable.ic_image)
-//                        }
-//                    }
-//                    AttachmentType.VIDEO -> binding.previewPhoto.setImageResource(R.drawable.ic_video)
-//                    AttachmentType.AUDIO -> binding.previewPhoto.setImageResource(R.drawable.ic_music)
-//                }
-//            }
-//        }
+        viewModel.attach.observe(viewLifecycleOwner) {
+            if (it == null) {
+                binding.previewPanel.visibility = View.GONE
+            } else {
+                binding.previewPanel.visibility = View.VISIBLE
+                when (it.dataType) {
+                    AttachmentType.IMAGE -> {
+                        if (it.uri != null) {
+                            binding.previewPhoto.setImageURI(it.uri)
+                        } else {
+                            binding.previewPhoto.setImageResource(R.drawable.ic_image)
+                        }
+                    }
+                    AttachmentType.VIDEO -> binding.previewPhoto.setImageResource(R.drawable.ic_video)
+                    AttachmentType.AUDIO -> binding.previewPhoto.setImageResource(R.drawable.ic_music)
+                }
+            }
+        }
 
 
         binding.edit.requestFocus()

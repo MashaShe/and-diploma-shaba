@@ -8,13 +8,13 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-@Database(entities = [PostEntity::class, UserEntity::class, //EventEntity::class,
-    PostKeyEntry::class, PostWorkEntity::class,UserKeyEntry::class], version = 13, exportSchema = false)
+@Database(entities = [PostEntity::class, UserEntity::class, EventEntity::class,
+    PostKeyEntry::class, PostWorkEntity::class,UserKeyEntry::class], version = 16, exportSchema = false)
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun userDao(): UserDao
     abstract fun authDao(): AuthDao
-    //abstract fun eventDao(): EventDao
+    abstract fun eventDao(): EventDao
 
     abstract fun postWorkDao(): PostWorkDao
 

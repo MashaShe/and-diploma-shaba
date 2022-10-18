@@ -20,9 +20,9 @@ interface ApiService {
 
     @Multipart
     @POST("users/registration")
-    suspend fun regMeAvatar (@Part("login") login: RequestBody,
-                             @Part("pass") pass: RequestBody,
-                             @Part("name") name: RequestBody,
+    suspend fun regMeAvatar (@Query("login") login: String,
+                             @Query("pass") pass: String,
+                             @Query("name") name: String,
                              @Part media: MultipartBody.Part?
     )
             : Response<AuthState>

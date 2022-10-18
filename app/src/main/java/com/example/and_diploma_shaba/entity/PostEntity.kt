@@ -21,7 +21,9 @@ data class PostEntity(
     val postAttachmentURL: String? = null,
     val postAttachmentType: String? = null,
     val logined: Boolean = false,
-    val ownedByMe: Boolean = false
+    val ownedByMe: Boolean = false,
+    var isLoading : Boolean = false
+
 
 
     //TODO: в DAO описать работу со всеми атрибутами поста и дргиух классов
@@ -41,7 +43,9 @@ data class PostEntity(
         postAttachmentURL,
         postAttachmentType,
         logined,
-        ownedByMe
+        ownedByMe,
+        isLoading
+
 
     )
 
@@ -62,7 +66,8 @@ data class PostEntity(
                 dto.postAttachmentURL,
                 dto.postAttachmentType,
                 dto.logined,
-                dto.ownedByMe)
+                dto.ownedByMe,
+                dto.isLoading)
 
     }
 }

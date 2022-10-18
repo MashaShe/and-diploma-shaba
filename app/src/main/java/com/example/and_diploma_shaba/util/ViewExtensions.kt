@@ -21,9 +21,9 @@ fun ImageView.load(url: String, vararg transforms: BitmapTransformation = emptyA
 
     Glide.with(this)
         .load(url)
-       // .placeholder(R.drawable.ic_baseline_user_placeholder)
-       // .error(Glide.with(this).load(R.drawable.ic_baseline_error_placeholder))
-       // .error(R.drawable.ic_baseline_error_placeholder)
+        .placeholder(R.drawable.ic_baseline_user_placeholder)
+      // .error(Glide.with(this).load(R.drawable.ic_baseline_error_placeholder))
+      // .error(R.drawable.ic_baseline_error_placeholder)
         .timeout(10_000)
         .transform(*transforms)
         .listener(object : RequestListener<Drawable> {

@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import com.example.and_diploma_shaba.R
+import com.example.and_diploma_shaba.activity.utils.PagingLoadStateAdapter
 import com.example.and_diploma_shaba.adapter.OnInteractionListener
 //import com.example.and_diploma_shaba.activity.utils.PagingLoadStateAdapter
 import com.example.and_diploma_shaba.adapter.PostsAdapter
@@ -58,13 +59,12 @@ class PostsAllFragment : Fragment() {
 
 
 
+          override fun onNotLogined(post: Post) {
+                Toast.makeText(requireActivity(),
+                    getString(R.string.login_first),
+                    Toast.LENGTH_SHORT).show()
+            }
 
-//            override fun onNotLogined(post: Post) {
-//                Toast.makeText(requireActivity(),
-//                    getString(R.string.login_first_action),
-//                    Toast.LENGTH_SHORT).show()
-//            }
-//
 //              override fun onMediaReadyClick(post: Post) {
 //                  mwPostViewModel.openMedia(post.id){ file ->
 //                      startActivity(Intent.createChooser(prepareIntent(file),
@@ -107,10 +107,10 @@ class PostsAllFragment : Fragment() {
         })
 
 
-//        _binding?.postList?.adapter = adapter.withLoadStateHeaderAndFooter(
-//            header = PagingLoadStateAdapter(adapter::retry),
-//            footer = PagingLoadStateAdapter(adapter::retry)
-//        )
+        _binding?.postList?.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(adapter::retry),
+            footer = PagingLoadStateAdapter(adapter::retry)
+        )
 
 
         val offesetH = resources.getDimensionPixelSize(R.dimen.common_spacing)
@@ -128,14 +128,14 @@ class PostsAllFragment : Fragment() {
         )
 
 
-        viewModel.dataState.observe(viewLifecycleOwner) {// state ->
-//            _binding?.swiperefresh?.isRefreshing = state.refreshing
-//            _binding?.progress?.isVisible = state.loading && _binding?.swiperefresh?.isVisible == false
-//            if (state.error) {
-//                Snackbar.make(_binding!!.root, R.string.error_loading, Snackbar.LENGTH_LONG)
-//                    .setAction(R.string.retry_loading) { viewModel.loadPosts() }
-//                    .show()
-//            }
+        viewModel.dataState.observe(viewLifecycleOwner) { state ->
+            _binding?.swiperefresh?.isRefreshing = state.refreshing
+            _binding?.progress?.isVisible = state.loading && _binding?.swiperefresh?.isVisible == false
+            if (state.error) {
+                Snackbar.make(_binding!!.root, R.string.error_loading, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.retry_loading) { viewModel.loadPosts() }
+                    .show()
+            }
         }
 
         lifecycleScope.launchWhenCreated {
@@ -146,20 +146,20 @@ class PostsAllFragment : Fragment() {
         }
 
         lifecycleScope.launchWhenCreated {
-//             adapter.loadStateFlow.collectLatest { states ->
-//                  _binding?.swiperefresh?.isRefreshing = states.refresh is LoadState.Loading
-//                 _binding?.errorOccured?.isVisible = states.refresh is LoadState.Error
-//
-//                 if (states.refresh.endOfPaginationReached) {
-//                     _binding?.emptyText?.isVisible = adapter.itemCount == 0
-//                 }
-             //}
+             adapter.loadStateFlow.collectLatest { states ->
+                  _binding?.swiperefresh?.isRefreshing = states.refresh is LoadState.Loading
+                 _binding?.errorOccured?.isVisible = states.refresh is LoadState.Error
+
+                 if (states.refresh.endOfPaginationReached) {
+                     _binding?.emptyText?.isVisible = adapter.itemCount == 0
+                 }
+             }
          }
 
 
-//        _binding?.swiperefresh?.setOnRefreshListener {
-//            viewModel.refreshPosts()
-//        }
+        _binding?.swiperefresh?.setOnRefreshListener {
+            viewModel.refreshPosts()
+        }
 
 
 

@@ -12,9 +12,10 @@ import kotlinx.coroutines.withContext
 
 
 @HiltWorker
-class RefreshPostsWorker @AssistedInject constructor(
-    @Assisted  applicationContext: Context,
-    @Assisted  params: WorkerParameters,
+
+  class RefreshPostsWorker @AssistedInject  constructor(
+    @Assisted applicationContext: Context,
+    @Assisted params: WorkerParameters,
     var repository: AppEntities
     ) : CoroutineWorker(applicationContext, params) {
     companion object {

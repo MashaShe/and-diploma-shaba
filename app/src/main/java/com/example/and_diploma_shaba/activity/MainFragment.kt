@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.*
-//import androidx.fragment.app.Fragment
-//import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +46,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.app_name)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        ( activity?.findViewById<Toolbar>(R.id.toolbar))?.setNavigationIcon(R.drawable.ic_baseline_more_vert_24)
+        (activity?.findViewById<Toolbar>(R.id.toolbar))?.setNavigationIcon(R.drawable.ic_baseline_more_vert_24)
 
     }
 
@@ -80,7 +80,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             "keyMainFragment",
             viewLifecycleOwner
         ) { requestKey, bundle ->
-            childFragmentManager.setFragmentResult(requestKey, bundle)
+          setFragmentResult(requestKey, bundle)
         }
 
 //        childFragmentManager.setFragmentResultListener(
@@ -93,7 +93,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             "keyWall",
             viewLifecycleOwner
         ) { requestKey, bundle ->
-            childFragmentManager.setFragmentResult(requestKey, bundle)
+            setFragmentResult(requestKey, bundle)
         }
 //
 //        childFragmentManager.setFragmentResultListener(
@@ -113,7 +113,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             "keyNewPost",
             viewLifecycleOwner
         ) { requestKey, bundle ->
-            childFragmentManager.setFragmentResult(requestKey, bundle)
+           setFragmentResult(requestKey, bundle)
         }
 //
 //        childFragmentManager.setFragmentResultListener(

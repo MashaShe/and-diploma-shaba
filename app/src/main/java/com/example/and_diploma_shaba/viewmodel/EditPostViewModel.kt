@@ -78,7 +78,7 @@ class EditPostViewModel @Inject constructor(
         edited.value = empty
         _attach.value = null
         _coords.value = null
-        _postText.value = null
+        _postText.value = "test"
         _positionOfLoadingPost = -1
     }
 
@@ -88,15 +88,15 @@ class EditPostViewModel @Inject constructor(
             operation = RecordOperation.CHANGE_RECORD
             val post = repository.getPostById(id).toDto()
             edited.value = post
-           // _coords.value = post.coords
+            _coords.value = null // post.coords
             _postText.value = post.postContent
 
-//            if (post.attachment != null) {
+//            if (post.postAttachmentType != null) {
 //                _attach.value = PreparedData(null,
-//                    AttachmentType.valueOf(post.attachment.type))
+//                    AttachmentType.valueOf(post.postAttachmentType))
 //            } else {
-//                _attach.value = null
-//            }
+                _attach.value = null
+          //  }
         }
     }
 
@@ -148,7 +148,7 @@ class EditPostViewModel @Inject constructor(
         edited.value = empty
         _attach.value = null
         _coords.value = null
-        _postText.value = ""
+        _postText.value = "test"
     }
 
 }

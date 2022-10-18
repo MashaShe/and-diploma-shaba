@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+//import androidx.navigation.fragment.findNavController
 import com.example.and_diploma_shaba.R
 import com.example.and_diploma_shaba.auth.AppAuth
 import com.example.and_diploma_shaba.databinding.FragmentRegistrationBinding

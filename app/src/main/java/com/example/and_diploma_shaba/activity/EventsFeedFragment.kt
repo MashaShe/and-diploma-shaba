@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+//import androidx.navigation.fragment.findNavController
 import com.example.and_diploma_shaba.R
 import com.example.and_diploma_shaba.adapter.EventAdapter
 import com.example.and_diploma_shaba.adapter.OnInteractionListener
@@ -42,30 +42,30 @@ class EventsFeedFragment : Fragment() {
         )
 
 
-        val adapter = EventAdapter(object : OnInteractionListener {
+  //      val adapter = EventAdapter(object : OnInteractionListener {
+//
+//            override fun onRemove(event: Event) {
+//                //viewModel.removeById(event.eventId)
+//            }
+//
+//
+//            override fun onEdit(event: Event) {
+//                val bundle = Bundle().apply {
+//                    putString("eventContent", event.eventContent)
+//                }
+//               // viewModel.edit(event)
+//                findNavController().navigate(R.id.action_eventsFeedFragment_to_editEventFragment, bundle)
+//            }
+//        })
 
-            override fun onRemove(event: Event) {
-                //viewModel.removeById(event.eventId)
-            }
-
-
-            override fun onEdit(event: Event) {
-                val bundle = Bundle().apply {
-                    putString("eventContent", event.eventContent)
-                }
-               // viewModel.edit(event)
-                findNavController().navigate(R.id.action_eventsFeedFragment_to_editEventFragment, bundle)
-            }
-        })
-
-        binding.eventList.adapter = adapter
+//        binding.eventList.adapter = adapter
 //        viewModel.data.observe(viewLifecycleOwner, { events ->
 //            adapter.submitList(events)
 //        })
 
-        binding.fab.setOnClickListener {
-            findNavController().navigate(R.id.action_eventsFeedFragment_to_newEventFragment)
-}
+//        binding.fab.setOnClickListener {
+//            findNavController().navigate(R.id.action_eventsFeedFragment_to_newEventFragment)
+//}
 
 //        binding.goToPost.setOnClickListener {
 //            findNavController().navigate(R.id.action_eventsFeedFragment_to_feedFragment)

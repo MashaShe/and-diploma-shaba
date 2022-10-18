@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+//import androidx.navigation.fragment.findNavController
 import com.example.and_diploma_shaba.R
 import com.example.and_diploma_shaba.databinding.FragmentEditPostBinding
 import com.example.and_diploma_shaba.util.AndroidUtils
@@ -60,7 +60,7 @@ class EditPostFragment : Fragment() {
               //  viewModel.changeContent(content)
               //  viewModel.save()
                 AndroidUtils.hideKeyboard(requireView())
-                findNavController().navigateUp()
+                //findNavController().navigateUp()
             }
         }
         return binding.root

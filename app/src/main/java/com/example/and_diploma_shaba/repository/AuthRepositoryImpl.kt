@@ -18,6 +18,7 @@ import com.example.and_diploma_shaba.api.ApiService
 import com.example.and_diploma_shaba.api.NetworkError
 import com.example.and_diploma_shaba.api.checkInternetConnection
 import com.example.and_diploma_shaba.db.AppDb
+import com.example.and_diploma_shaba.dto.MediaUpload
 import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.dto.User
 import com.example.and_diploma_shaba.entity.PostEntity
@@ -213,20 +214,12 @@ class AppRepositoryImpl(
                 .build().part(0)
 
             if (uri != null) {
-                val uploadMedia = (Uri.parse(uri).toFile())
+                val uploadMedia = MediaUpload(Uri.parse(uri).toFile())
                 media = MultipartBody.Part.createFormData(
-                    "file", uploadMedia.name, uploadMedia.asRequestBody())
+                    "file", uploadMedia.file.name, uploadMedia.file.asRequestBody())
             }
 
-//            val response = api.regMeAvatar(login, pass, name, media
-//                )
-            123456
-            val response = api.regMeAvatar(
-                login.toRequestBody("text/plain".toMediaType()),
-                pass.toRequestBody("text/plain".toMediaType()),
-                name.toRequestBody("text/plain".toMediaType()),
-                media
-            )
+            val response = api.regMeAvatar(login, pass, name, media)
 
             val body = response.body()
             if (!response.isSuccessful) {
@@ -234,10 +227,48 @@ class AppRepositoryImpl(
             }
             if (body?.token != null) {
                 successCase(body.id, body.token)
-                //////
             }
         }
     }
+
+//    override suspend fun regNewUser(
+//        login: String,
+//        pass: String,
+//        name: String,
+//        uri : String?,
+//        successCase: (id: Long, token: String) -> Unit) {
+//
+//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+//            var media : MultipartBody.Part = MultipartBody.Builder().setType(MultipartBody.FORM)
+//                .addFormDataPart("", "")
+//                .build().part(0)
+//
+//            if (uri != null) {
+//                val uploadMedia = (Uri.parse(uri).toFile())
+//                media = MultipartBody.Part.createFormData(
+//                    "file", uploadMedia.name, uploadMedia.asRequestBody())
+//            }
+//
+//            val response = api.regMeAvatar(login, pass, name, media
+//                )
+////            123456
+////            val response = api.regMeAvatar(
+////                login.toRequestBody("text/plain".toMediaType()),
+////                pass.toRequestBody("text/plain".toMediaType()),
+////                name.toRequestBody("text/plain".toMediaType()),
+////                media
+////            )
+//
+//            val body = response.body()
+//            if (!response.isSuccessful) {
+//                throw ApiError(response.code(), response.message())
+//            }
+//            if (body?.token != null) {
+//                successCase(body.id, body.token)
+//                //////
+//            }
+//        }
+//    }
 
 
     //------------ fragments API calls -------------------------------------------------

@@ -11,7 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.navigation.findNavController
+//import androidx.navigation.findNavController
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.messaging.FirebaseMessaging
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             replace(
-                R.id.fragment_container_view_tag, java, bundle
+                R.id.fragment_container_view, java, bundle
             )
             addToBackStack(java.simpleName)
         }

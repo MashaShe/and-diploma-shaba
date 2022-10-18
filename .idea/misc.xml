@@ -10,10 +10,15 @@
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/drawable-xxhdpi/posts.xml" value="0.1" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/drawable-xxhdpi/users.xml" value="0.1" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/activity_loading.xml" value="0.19270833333333334" />
-        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/activity_main.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/activity_map.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/card_event.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/card_loadstate.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/card_post.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/card_user.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_edit_event.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_edit_post.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_events_feed.xml" value="0.175" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_feed.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_loading.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_main.xml" value="0.2125" />
@@ -22,6 +27,7 @@
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_new_post.xml" value="0.2" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_posts.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_registration.xml" value="0.19375" />
+        <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/fragment_users.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/layout/login_auth.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/menu/menu_main.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Mi/AndroidStudioProjects/anddiplomashaba/app/src/main/res/menu/menu_new_record.xml" value="0.22447916666666667" />

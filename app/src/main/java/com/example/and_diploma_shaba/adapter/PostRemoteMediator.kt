@@ -31,7 +31,7 @@ class PostRemoteMediator(private val api: ApiService,
                 val response = when (loadType) {
                     else -> {
                         base.postDao().deleteAll()
-                        //api.getLatestPosts(state.config.pageSize)
+                       // api.getLatestPosts(state.config.pageSize)
                         api.getAllPosts()
                     }
                     /*   LoadType.REFRESH -> {

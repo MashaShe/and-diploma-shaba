@@ -3,6 +3,7 @@ package com.example.and_diploma_shaba.adapter
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
 import android.widget.ImageView
 import android.widget.PopupMenu
+import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
@@ -31,27 +33,27 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.*
 
-//interface OnInteractionListener {
-//    fun onLike(post: Post)
-//    fun onEdit(post: Post, position: Int) {}
-//    fun onRemove(post: Post) {}
-//    fun onShare(post: Post)
+interface OnInteractionListener {
+    fun onLike(post: Post)
+    fun onEdit(post: Post, position: Int) {}
+    fun onRemove(post: Post) {}
+    fun onShare(post: Post)
 //    fun onMediaPrepareClick(post: Post)
 //    fun onMediaReadyClick(post: Post)
 //    fun onPlaceClick(post: Post)
-//    fun onNotLogined(post: Post)
-//}
+    fun onNotLogined(post: Post)
+}
 
 class PostsAdapter(
     private val onInteractionListener: OnInteractionListener,
 ) : PagingDataAdapter<FeedModel, RecyclerView.ViewHolder>(PostDiffCallback()) {
 
 
-//    private fun updateItem(position: Int) {
-//        val post = (snapshot().items[position] as PostModel)
-//        post.post.isLoading = true
-//        notifyItemChanged(position)
-//    }
+    private fun updateItem(position: Int) {
+        val post = (snapshot().items[position] as PostModel)
+      post.post.isLoading = true
+        notifyItemChanged(position)
+    }
 
     fun disablePost(position: Int) {
         val handler = android.os.Handler(Looper.getMainLooper())
@@ -64,14 +66,14 @@ class PostsAdapter(
                     )
                     return@run
                 }
-                //updateItem(position)
+                updateItem(position)
             }
         }
 
         if (snapshot().items.isEmpty()) {
             handler.postDelayed(updateTask, 3000)
         } else {
-            //updateItem(position)
+            updateItem(position)
         }
 
     }
@@ -109,16 +111,18 @@ class PostsAdapter(
 
 data class PostState(val id: Long, val like: Boolean)
 
-//fun convertLongToTime(time: String?): String {
-//    return try {
-//        val ax = Instant.parse(time)
-//        val ldt: LocalDateTime = LocalDateTime.ofInstant(ax, ZoneId.systemDefault())
-//        "${ldt.dayOfMonth} ${ldt.month} ${ldt.year}, ${ldt.hour}:${ldt.minute}:${ldt.second}"
-//    } catch (e: ParseException) {
-//        e.printStackTrace()
-//        "unknown date :("
-//    }
-//}
+@RequiresApi(Build.VERSION_CODES.O)
+
+fun convertLongToTime(time: String?): String {
+    return try {
+        val ax = Instant.parse(time)
+        val ldt: LocalDateTime = LocalDateTime.ofInstant(ax, ZoneId.systemDefault())
+        "${ldt.dayOfMonth} ${ldt.month} ${ldt.year}, ${ldt.hour}:${ldt.minute}:${ldt.second}"
+    } catch (e: ParseException) {
+        e.printStackTrace()
+        "unknown date :("
+    }
+}
 
 class PostViewHolder(
     private val binding: CardPostBinding,
@@ -148,17 +152,17 @@ class PostViewHolder(
                 }
             }
 
-//            if (post.isLoading) {
-//                progressWall.isVisible = true
-//                menu.isGone = true
-//                content.isGone = true
-//                like.isGone = true
-//                share.isGone = true
-//                openPlace.isGone = true
-//                mediaAttach.isGone = true
-//                postPicture.isGone = true
-//                return
-//            }
+            if (post.isLoading) {
+               // progressWall.isVisible = true
+                moreButton.isGone = true
+                longTextView.isGone = true
+                likeButton.isGone = true
+                repostButton.isGone = true
+               // openPlace.isGone = true
+             //   mediaAttach.isGone = true
+               // postPicture.isGone = true
+                return
+            }
 
             longTextView.text = post.postContent
 
@@ -183,7 +187,7 @@ class PostViewHolder(
             } else {
                 likeButton.setOnClickListener {
                     likeButton.isChecked = !likeButton.isChecked
-                 //   onInteractionListener.onNotLogined(post)
+                    onInteractionListener.onNotLogined(post)
                 }
             }
 

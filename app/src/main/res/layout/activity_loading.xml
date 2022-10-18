@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_loading"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:name="com.example.and_diploma_shaba.activity.MainFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -47,11 +47,11 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
         val binding = FragmentFeedBinding.bind(view)
 
         val adapter = PostsAdapter(object : OnInteractionListener {
-//            override fun onNotLogined(post: Post) {
-//                Toast.makeText(requireActivity(),
-//                    getString(R.string.login_first_action),
-//                    Toast.LENGTH_SHORT).show()
-//            }
+            override fun onNotLogined(post: Post) {
+                Toast.makeText(requireActivity(),
+                    getString(R.string.login_first_action),
+                    Toast.LENGTH_SHORT).show()
+            }
 
 //            override fun onMediaPrepareClick(post: Post) {
 //                mwPostViewModel.downloadMedia(post)
@@ -75,8 +75,7 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
 //                            ">(" + getString(R.string.place)  +
 //                            ")")
 //                )
-//                startActivity(intent)
-//            }
+//                startActivity(intent) //          }
 
 
 
@@ -164,12 +163,9 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
 
 
 
-
         binding.swiperefresh.setOnRefreshListener {
             viewModel.refreshPosts()
         }
-
-
 
 
     }

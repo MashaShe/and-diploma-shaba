@@ -13,11 +13,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
-import androidx.navigation.fragment.findNavController
+//import androidx.navigation.fragment.findNavController
 import com.example.and_diploma_shaba.R
 import com.example.and_diploma_shaba.adapter.OnInteractionListener
 import com.example.and_diploma_shaba.adapter.PostsAdapter
-import com.example.and_diploma_shaba.adapter.UserAdapter
+import com.example.and_diploma_shaba.adapter.UsersAdapter
 //import com.example.and_diploma_shaba.adapter.UserAdapter
 import com.example.and_diploma_shaba.databinding.FragmentFeedBinding
 import com.example.and_diploma_shaba.databinding.FragmentRegistrationBinding

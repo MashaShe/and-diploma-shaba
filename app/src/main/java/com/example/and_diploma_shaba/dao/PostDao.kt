@@ -16,7 +16,10 @@ interface PostDao {
     @Query("SELECT * FROM PostEntity ORDER BY postId DESC")
     fun getAll(): LiveData<List<PostEntity>>
 
-    @Query("SELECT * FROM PostEntity ORDER BY postid DESC")
+    @Query("SELECT * FROM PostEntity WHERE authorId = :id ORDER BY postId DESC")
+    fun getPosts(id : Long): PagingSource<Int,PostEntity>
+
+    @Query("SELECT * FROM PostEntity ORDER BY postId DESC")
     fun getAllPosts(): PagingSource<Int, PostEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

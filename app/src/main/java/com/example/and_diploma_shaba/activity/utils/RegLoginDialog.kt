@@ -97,9 +97,10 @@ private fun showRegFields(
     val name = dialogView.findViewById<EditText>(R.id.editTextTextName)
   //  val setAva = dialogView.findViewById<MaterialButton>(R.id.setAva)
 
+    password.visibility = View.VISIBLE
   //  passwordL.visibility = View.VISIBLE
 //    password2.visibility = View.VISIBLE
-//    name.visibility = View.VISIBLE
+   name.visibility = View.VISIBLE
  //   nameL.visibility = View.VISIBLE
   //  setAva.visibility = View.VISIBLE
 //

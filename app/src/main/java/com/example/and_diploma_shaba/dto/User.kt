@@ -5,7 +5,7 @@ import java.util.*
 data class User(
     val userId: Long = 0,
     val userLogin: String,
-    val userPass: String = "123", //TODO add firebase authentication
+    val userPass: String = "123",
     val userAvatar: String? = null,
     val userFirstName: String = "Иван",
     val userLastName:String = "Иванов",
