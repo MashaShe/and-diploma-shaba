@@ -130,7 +130,7 @@
             android:ems="10"
             android:foregroundTint="#E3AFAF"
             android:hint="@string/name_hint"
-            android:inputType="textPassword"
+            android:inputType="text"
             app:layout_constraintBottom_toTopOf="@+id/regButton"
             app:layout_constraintStart_toStartOf="@+id/loginButton" />
 

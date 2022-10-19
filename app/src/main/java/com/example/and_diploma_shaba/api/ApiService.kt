@@ -81,16 +81,16 @@ interface ApiService {
 
     // POSTS
     @GET("posts")
-    fun getAllPosts(): Response<List<Post>> //suspend
+    suspend fun getAllPosts(): Response<List<Post>> //suspend
 
     @POST("posts")
-    fun savePost(@Body post: Post): Response<Post> //suspend
+    suspend fun savePost(@Body post: Post): Response<Post> //suspend
 
     @GET("{id}/wall")
-    fun getWall(@Path("id") id: Long): Response<List<Post>> //suspend
+    suspend fun getWall(@Path("id") id: Long): Response<List<Post>> //suspend
 
     @DELETE("posts/{id}")
-    fun removeById(@Path("id") id: Long): Response<Unit> //suspend
+    suspend fun removeById(@Path("id") id: Long): Response<Unit> //suspend
 
     @DELETE ("posts/{postId}")
     suspend fun deletePost(@Path("postId") postId: Long): Response<Unit>
