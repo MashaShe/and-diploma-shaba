@@ -8,8 +8,13 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-@Database(entities = [PostEntity::class, UserEntity::class, EventEntity::class,
-    PostKeyEntry::class, PostWorkEntity::class,UserKeyEntry::class], version = 16, exportSchema = false)
+@Database(entities = [UserEntity::class,UserKeyEntry::class,
+    PostEntity::class,PostKeyEntry::class, PostWorkEntity::class,
+    EventEntity::class, EventKeyEntry::class, EventWorkEntity::class
+                     ], version = 24, exportSchema = false)
+
+@TypeConverters(Converters::class)
+
 abstract class AppDb : RoomDatabase() {
     abstract fun postDao(): PostDao
     abstract fun userDao(): UserDao
@@ -17,9 +22,12 @@ abstract class AppDb : RoomDatabase() {
     abstract fun eventDao(): EventDao
 
     abstract fun postWorkDao(): PostWorkDao
+    abstract fun eventWorkDao() : EventWorkDao
+
 
     abstract fun keyUserPaginationDao(): UserPaginationKeyDao
     abstract fun keyPostPaginationDao(): PostPaginationKeyDao
+    abstract fun keyEventPaginationDao(): EventPaginationKeyDao
 
 
     companion object {

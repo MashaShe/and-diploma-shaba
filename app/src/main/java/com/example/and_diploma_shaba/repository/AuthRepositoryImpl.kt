@@ -11,6 +11,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 
 import androidx.paging.*
+import com.example.and_diploma_shaba.adapter.EventsRemoteMediator
 import com.example.and_diploma_shaba.adapter.PostRemoteMediator
 import com.example.and_diploma_shaba.adapter.UserRemoteMediator
 import com.example.and_diploma_shaba.api.ApiError
@@ -21,10 +22,16 @@ import com.example.and_diploma_shaba.db.AppDb
 import com.example.and_diploma_shaba.dto.MediaUpload
 import com.example.and_diploma_shaba.dto.Post
 import com.example.and_diploma_shaba.dto.User
+import com.example.and_diploma_shaba.dto.Event
 import com.example.and_diploma_shaba.entity.PostEntity
 import com.example.and_diploma_shaba.entity.PostWorkEntity
 import com.example.and_diploma_shaba.entity.UserEntity
 import com.example.and_diploma_shaba.entity.toEntity
+import com.example.and_diploma_shaba.entity.EventWorkEntity
+import com.example.and_diploma_shaba.entity.EventEntity
+import com.example.and_diploma_shaba.entity.EventKeyEntry
+
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import okhttp3.OkHttpClient
@@ -73,14 +80,14 @@ class AppRepositoryImpl(
         it.map(UserEntity::toDto)
     }
 
-//    @ExperimentalPagingApi
-//    override val edata: Flow<PagingData<Event>> = Pager(
-//        remoteMediator = EventsRemoteMediator(api, base, this),
-//        config = PagingConfig(pageSize = 5, enablePlaceholders = false),
-//        pagingSourceFactory = base.eventDao()::getAll
-//    ).flow.map {
-//        it.map(EventEntity::toDto)
-//    }
+    @ExperimentalPagingApi
+    override val edata: Flow<PagingData<Event>> = Pager(
+        remoteMediator = EventsRemoteMediator(api, base, this),
+        config = PagingConfig(pageSize = 5, enablePlaceholders = false),
+        pagingSourceFactory = base.eventDao()::getAll
+    ).flow.map {
+        it.map(EventEntity::toDto)
+    }
 
     ///---------------------------- Viewpager's shared prefs -------------------------------------
 
@@ -116,9 +123,9 @@ class AppRepositoryImpl(
 //        return base.jobDao().getJobById(id)
 //    }
 
-//    override suspend fun getEventByIdFromDB(id: Long): EventEntity? {
-//        return base.eventDao().getEvent(id)
-//    }
+    override suspend fun getEventByIdFromDB(id: Long): EventEntity? {
+        return base.eventDao().getEvent(id)
+    }
 
 
     //---------------------------- REST requests ----------------------------------------------
@@ -317,17 +324,17 @@ class AppRepositoryImpl(
     }
 
 
-//    override suspend fun getAllEvents() {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val response = api.getAllEvents()
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            val body = response.body() ?: throw ApiError(response.code(), response.message())
-//
-//            base.eventDao().insert(body.toEntity())
-//        }
-//    }
+    override suspend fun getAllEvents() {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val response = api.getAllEvents()
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+
+            base.eventDao().insert(body.toEntity())
+        }
+    }
 
 
     override suspend fun getAllUsers() {
@@ -384,9 +391,11 @@ class AppRepositoryImpl(
     //-------------------------- Posts / Media upload-------------------------------------
 
 
-    override suspend fun savePostForWorker(post: Post, uri: String?, type: String?): Long {
+    override suspend fun savePostForWorker(post: Post//, uri: String?, type: String?
+         ): Long {
         val entity = PostWorkEntity.fromDto(post)
-        return base.postWorkDao().insert(entity.copy(postAttachmentURL = uri, postAttachmentType = type))
+        return base.postWorkDao().insert(entity.copy(//postAttachmentURL = uri, postAttachmentType = type
+    ))
     }
     //РАЗОБРАТЬСЯ С МЕДИА В ПОСТАХ И АВАТАРКЕ СМ ЕНТИТИ И ДАО, НЕ ЗАВЕДЕНЫ медиа параметры поста и аватара
 
@@ -423,7 +432,7 @@ class AppRepositoryImpl(
 //                sendWholePostToServer(post.copy(attachment = null))
 //                //do not update attachment, just send it like it was
 //            } else if (entity.mediaUri == null && entity.mediaType != null) {
-//                sendWholePostToServer(post)
+                sendWholePostToServer(post)
 //            }
             base.postWorkDao().removeById(id)
         }
@@ -549,24 +558,26 @@ class AppRepositoryImpl(
 //    }
 
     //---------------------------  EVENTS  ----------------
-//    override suspend fun processEventWork(task: Array<String>) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val id = task[1].toLong()
-//            val operation = RecordOperation.valueOf(task[0])
-//
-//            if (operation == RecordOperation.DELETE_RECORD) {
-//                sendDeleteEvent(id)
-//                return@tryCatchWrapper
-//            }
-//
-//            //NEW or EDIT event
-//            val entity = base.eventWorkDao().getById(id)
-//
-//            val event = prepareEventFromEntity(entity.toDto(), operation)
-//
-//            //upload new attach and post to server
+
+
+    override suspend fun processEventWork(task: Array<String>) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val id = task[1].toLong()
+            val operation = RecordOperation.valueOf(task[0])
+
+            if (operation == RecordOperation.DELETE_RECORD) {
+                sendDeleteEvent(id)
+                return@tryCatchWrapper
+            }
+
+            //NEW or EDIT event
+            val entity = base.eventWorkDao().getById(id)
+
+            val event = prepareEventFromEntity(entity.toDto(), operation)
+
+            //upload new attach and post to server
 //            if (entity.mediaUri != null && entity.mediaType != null) {
-//                val mediaFileId = uploadMfileToServer(entity.mediaUri)
+//                //val mediaFileId = uploadMfileToServer(entity.mediaUri)
 //
 //                val eventWithAttachment =
 //                    event.copy(attachment = Attachment(entity.mediaType, mediaFileId))
@@ -577,109 +588,111 @@ class AppRepositoryImpl(
 //                sendWholeEventToServer(event.copy(attachment = null))
 //                //do not update attachment, just send it like it was
 //            } else if (entity.mediaUri == null && entity.mediaType != null) {
-//                sendWholeEventToServer(event)
-//            }
-//            base.eventWorkDao().removeById(id)
-//        }
-//    }
-//
-//    override suspend fun saveEventForWorker(event: Event, uri: String?, type: String?): Long {
-//        val entity = EventWorkEntity.fromDto(event)
-//        return base.eventWorkDao().insert(entity.copy(mediaUri = uri, mediaType = type))
-//    }
-//
-//
-//    override suspend fun sendDeleteEvent(id: Long) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name){
-//            val response = api.deleteEvent(id)
-//
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            base.eventDao().removeById(id)
-//        }
-//    }
-//
-//    override suspend fun prepareEventFromEntity(event: Event, task: RecordOperation): Event {
-//        return  event.copy(id = if (task == RecordOperation.NEW_RECORD) {
-//            0
-//        } else {
-//            if (task == RecordOperation.CHANGE_RECORD) {
-//                event.id
-//            } else {
-//                throw  IllegalStateException("Wrong event operation")
-//            }
-//
-//        })
-//
-//    }
-//
-//    override suspend fun sendWholeEventToServer(event: Event) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val response = api.saveEvent(event)
-//
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            val body = response.body() ?: throw ApiError(response.code(), response.message())
-//            base.eventDao().insert(EventEntity.fromDto(body))
-//        }
-//    }
-//
-//
-//    override suspend fun likeEventById(id: Long) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val response = api.setLikeToEvent(id)
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            val body = response.body() ?: throw ApiError(response.code(), response.message())
-//
-//            base.eventDao().insert(EventEntity.fromDto(body))
-//        }
-//    }
-//
-//
-//    override suspend fun setDislikeToEventById(id: Long) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val response = api.setDislikeToEvent(id)
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            val body = response.body() ?: throw ApiError(response.code(), response.message())
-//
-//            base.eventDao().insert(EventEntity.fromDto(body))
-//        }
-//    }
-//
-//    override suspend fun participateToEvent(id: Long) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val response = api.participateToEvent(id)
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            val body = response.body() ?: throw ApiError(response.code(), response.message())
-//
-//            base.eventDao().insert(EventEntity.fromDto(body))
-//        }
-//    }
-//
-//    override suspend fun doNotParticipateToEvent(id: Long) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            val response = api.doNotParticipateToEvent(id)
-//            if (!response.isSuccessful) {
-//                throw ApiError(response.code(), response.message())
-//            }
-//            val body = response.body() ?: throw ApiError(response.code(), response.message())
-//
-//            base.eventDao().insert(EventEntity.fromDto(body))
-//        }
-//    }
+                sendWholeEventToServer(event)
+           // }
+            base.eventWorkDao().removeById(id)
+        }
+    }
+
+    override suspend fun saveEventForWorker(event: Event, uri: String?, type: String?): Long {
+        val entity = EventWorkEntity.fromDto(event)
+        return base.eventWorkDao().insert(entity.copy(//mediaUri = uri, mediaType = type
+     ))
+    }
+
+
+    override suspend fun sendDeleteEvent(id: Long) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name){
+            val response = api.deleteEvent(id)
+
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            base.eventDao().removeById(id)
+        }
+    }
+
+    override suspend fun prepareEventFromEntity(event: Event, task: RecordOperation): Event {
+        return  event.copy(id = if (task == RecordOperation.NEW_RECORD) {
+            0
+        } else {
+            if (task == RecordOperation.CHANGE_RECORD) {
+                event.id
+            } else {
+                throw  IllegalStateException("Wrong event operation")
+            }
+
+        })
+
+    }
+
+    override suspend fun sendWholeEventToServer(event: Event) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val response = api.saveEvent(event)
+
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+            base.eventDao().insert(EventEntity.fromDto(body))
+        }
+    }
+
+
+    override suspend fun likeEventById(id: Long) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val response = api.setLikeToEvent(id)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+
+            base.eventDao().insert(EventEntity.fromDto(body))
+        }
+    }
+
+
+    override suspend fun setDislikeToEventById(id: Long) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val response = api.setDislikeToEvent(id)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+
+            base.eventDao().insert(EventEntity.fromDto(body))
+        }
+    }
+
+    override suspend fun participateToEvent(id: Long) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val response = api.participateToEvent(id)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+
+            base.eventDao().insert(EventEntity.fromDto(body))
+        }
+    }
+
+    override suspend fun doNotParticipateToEvent(id: Long) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            val response = api.doNotParticipateToEvent(id)
+            if (!response.isSuccessful) {
+                throw ApiError(response.code(), response.message())
+            }
+            val body = response.body() ?: throw ApiError(response.code(), response.message())
+
+            base.eventDao().insert(EventEntity.fromDto(body))
+        }
+    }
 
 
 
     //--------------------------------------------------------------------------------
     //TODO это во вью модели надо разобраться насчет даунлоада
+
 //    override fun download(url: String, destFile: File, answer : CallbackR<Byte>) {
 //        val request: Request = Request.Builder().url(url).build()
 //
@@ -718,11 +731,11 @@ class AppRepositoryImpl(
     }
 
 
-//    override suspend fun updateEvent(event: Event) {
-//        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
-//            base.eventDao().insert(EventEntity.fromDto(event))
-//        }
-//    }
+    override suspend fun updateEvent(event: Event) {
+        tryCatchWrapper(object {}.javaClass.enclosingMethod.name) {
+            base.eventDao().insert(EventEntity.fromDto(event))
+        }
+    }
 }
 
 

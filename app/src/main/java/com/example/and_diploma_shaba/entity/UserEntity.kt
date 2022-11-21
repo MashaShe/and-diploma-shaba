@@ -11,10 +11,10 @@ data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     val userId: Long,
     val userLogin: String,
-    val userPass: String,
+    //val userPass: String,
     val userAvatar: String? = null,
     val userFirstName: String,
-    val userLastName:String//,
+   // val userLastName:String//,
     //val userBirthDate: Date? = null,
     //val userAuthorities: List<String>? = null
 
@@ -23,10 +23,10 @@ data class UserEntity(
     fun toDto() = User(
         userId,
         userLogin,
-        userPass,
+       // userPass,
         userAvatar,
         userFirstName,
-        userLastName//,
+      //  userLastName//,
        // userBirthDate,
        // userAuthorities
     )
@@ -36,10 +36,10 @@ data class UserEntity(
             UserEntity(
                 dto.userId,
                 dto.userLogin,
-                dto.userPass,
+            //    dto.userPass,
                 dto.userAvatar,
                 dto.userFirstName,
-                dto.userLastName//,
+              //  dto.userLastName//,
                 //dto.userBirthDate,
                // dto.userAuthorities
     )

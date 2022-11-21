@@ -14,7 +14,7 @@ interface UserDao {
 
     //@Query("SELECT * FROM UserEntity WHERE userLogin = :login ORDER BY userId DESC")
     @Query("SELECT * FROM UserEntity WHERE userLogin = :login")
-    fun findMe(login: String): UserEntity
+    suspend  fun findMe(login: String): UserEntity
 
 
 //    @Query("SELECT userPass FROM UserEntity WHERE userId = :id")
@@ -33,16 +33,17 @@ interface UserDao {
     suspend fun getAllUsers(): List<UserEntity>
 
     @Query("SELECT * FROM UserEntity")
-    fun getAll(): PagingSource<Int, UserEntity>
+      fun getAll(): PagingSource<Int, UserEntity>
+
 
     @Query("SELECT * FROM UserEntity WHERE userLogin = :login")
-    fun findByLogin(login: String?): UserEntity
+    suspend   fun findByLogin(login: String?): UserEntity
 
 //    @Insert
 //    fun insert(user: UserEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user: List<UserEntity>) //suspend
+    suspend fun insert(user: List<UserEntity>) //suspend
 //    fun save(user: UserEntity) =
 //        if (user.userId == 0L) insert(user) else updateContentById(user.usertId, post.postContent)
 

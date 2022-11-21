@@ -1,18 +1,42 @@
 package com.example.and_diploma_shaba.dto
 
-data class Event(
-   // "postId": {{event_id}},
-    val eventId: Long = 0,
-    val authorId: Long = 0,
-    val authorName: String? = null,
-    val authorAvatar: String? = null,
-    val eventContent: String = "Выпускники Kotlin Developer (updated)",
-    val eventPublished:String = "2021-08-17T16:46:58.887547Z",
-    val eventDateTime: String = "2021-09-17T16:46:58.887547Z",
-    val eventType: String = "ONLINE",
-    val eventLink: String? = "https://netology.ru/programs/android-app",
-    //val eventSpeakerIds: List <Long>? = null,
-    val eventAttachmentURL: String? ="netology.jpg",
-    val eventAttachmentType: String? = "IMAGE"
+import com.google.gson.annotations.SerializedName
 
+data class Event(
+    //val attachment: Attachment?,
+    val id: Long,
+    val author: String?,
+    val authorAvatar: String?,
+    val authorId: Long,
+    val content: String?,
+    val link: String?,
+    val published: String?,
+    val datetime : String?,
+    val speakerIds: List<Long>?,
+    val type: String?,
+    val likedByMe : Boolean,
+    val participatedByMe : Boolean,
+    val downloadingProgress : Byte?,
+    val speakerNames: List<String>? = null,
+    val logined : Boolean = false,
+    val belongsToMe : Boolean? = null,
+
+    )
+
+
+val emptyEvent = Event (
+  //  attachment = null,
+    id = 0,
+    author = "",
+    authorAvatar = "",
+    authorId = 0,
+    content = null,
+    link = null,
+    published = null,
+    datetime = null,
+    speakerIds = null,
+    type = null,
+    likedByMe = false,
+    participatedByMe = false,
+    downloadingProgress = null
 )

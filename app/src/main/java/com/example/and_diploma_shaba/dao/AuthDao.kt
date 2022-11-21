@@ -15,8 +15,8 @@ interface AuthDao {
     @Insert
     fun insert(user: UserEntity)
 
-    @Query("SELECT userPass FROM UserEntity WHERE userId = :id")
-    fun userPassById(id: Long): String
+//    @Query("SELECT userPass FROM UserEntity WHERE userId = :id")
+//    fun userPassById(id: Long): String
 
     @Query("SELECT userLogin FROM UserEntity WHERE userId = :id")
     fun userLoginById(id: Long): String

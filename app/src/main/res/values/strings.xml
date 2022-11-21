@@ -93,12 +93,22 @@
     <string name="login_first_action">Please log in</string>
 
 
-
-
-
-
-
-
+    <string name="format">Format: %1$s</string>
+    <string name="organizators">"Organizators: %1$s"</string>
+    <string name="toParticipate">Participate</string>
+    <string name="you_going_to">You going to participate</string>
+    <string name="downloading">downloading...</string>
+    <string name="choose_app">Choose application</string>
+    <string name="see_events">Events</string>
+    <string name="new_event">New Event</string>
+    <string name="event_soon">Your event will appear soon</string>
+    <string name="edit_event">Edit Event</string>
+    <string name="event_types">Event types</string>
+    <string name="pick_up_a_date">Pick up a date</string>
+    <string name="offline">offline</string>
+    <string name="online">online</string>
+    <string name="event_link">Event link</string>
+    <string name="insert_a_link_here">Insert a link here</string>
 
 
 </resources>

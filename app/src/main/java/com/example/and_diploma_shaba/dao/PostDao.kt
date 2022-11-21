@@ -23,10 +23,10 @@ interface PostDao {
     fun getAllPosts(): PagingSource<Int, PostEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(post: PostEntity) //suspend
+   suspend fun insert(post: PostEntity) //suspend
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(posts: List<PostEntity>) //suspend
+    suspend fun insert(posts: List<PostEntity>) //suspend
 
     @Query("UPDATE PostEntity SET postContent = :content WHERE postId = :id")
     fun updateContentById(id: Long, content: String)

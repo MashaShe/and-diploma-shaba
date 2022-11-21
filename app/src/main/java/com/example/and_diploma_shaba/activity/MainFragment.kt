@@ -83,12 +83,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
           setFragmentResult(requestKey, bundle)
         }
 
-//        childFragmentManager.setFragmentResultListener(
-//            "keyEvents",
-//            viewLifecycleOwner
-//        ) { requestKey, bundle ->
-//            setFragmentResult(requestKey, bundle)
-//        }
+        childFragmentManager.setFragmentResultListener(
+            "keyEvents",
+            viewLifecycleOwner
+        ) { requestKey, bundle ->
+            setFragmentResult(requestKey, bundle)
+        }
+
         childFragmentManager.setFragmentResultListener(
             "keyWall",
             viewLifecycleOwner
@@ -115,13 +116,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         ) { requestKey, bundle ->
            setFragmentResult(requestKey, bundle)
         }
-//
-//        childFragmentManager.setFragmentResultListener(
-//            "keyNewEvent",
-//            viewLifecycleOwner
-//        ) { requestKey, bundle ->
-//            setFragmentResult(requestKey, bundle)
-//        }
+
+        childFragmentManager.setFragmentResultListener(
+            "keyNewEvent",
+            viewLifecycleOwner
+        ) { requestKey, bundle ->
+            setFragmentResult(requestKey, bundle)
+        }
 //
 //        childFragmentManager.setFragmentResultListener(
 //            "keyMapPicker",

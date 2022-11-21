@@ -16,7 +16,7 @@ import com.example.and_diploma_shaba.viewmodel.CallbackR
 import java.io.File
 
 
-interface AppEntities : UserRepository, PostRepository, //EventRepository, JobsRepository,
+interface AppEntities : UserRepository, PostRepository, EventRepository, //JobsRepository,
   AuthMethods, AppWork
 
 
@@ -60,21 +60,21 @@ interface AuthMethods {
 //  //suspend fun saveJobForWorker(job: JobReq): Long
 //}
 
-//interface EventRepository {
-//  val edata: Flow<PagingData<Event>>
-//  suspend fun getAllEvents()
-//  suspend fun processEventWork(task: Array<String>)
-//  suspend fun saveEventForWorker(event: Event, uri: String?, type: String?): Long
-//  suspend fun getEventByIdFromDB(id: Long): EventEntity?
-//  suspend fun sendDeleteEvent(id: Long)
-//  suspend fun prepareEventFromEntity(event: Event, operation: RecordOperation): Event
-//  suspend fun sendWholeEventToServer(event: Event)
-//  suspend fun likeEventById(id: Long)
-//  suspend fun setDislikeToEventById(id: Long)
-//  suspend fun participateToEvent(id: Long)
-//  suspend fun doNotParticipateToEvent(id: Long)
-//  suspend fun updateEvent(event: Event)
-//}
+interface EventRepository {
+  val edata: Flow<PagingData<Event>>
+  suspend fun getAllEvents()
+  suspend fun processEventWork(task: Array<String>)
+  suspend fun saveEventForWorker(event: Event, uri: String?, type: String?): Long
+  suspend fun getEventByIdFromDB(id: Long): EventEntity?
+  suspend fun sendDeleteEvent(id: Long)
+  suspend fun prepareEventFromEntity(event: Event, operation: RecordOperation): Event
+  suspend fun sendWholeEventToServer(event: Event)
+  suspend fun likeEventById(id: Long)
+  suspend fun setDislikeToEventById(id: Long)
+  suspend fun participateToEvent(id: Long)
+  suspend fun doNotParticipateToEvent(id: Long)
+  suspend fun updateEvent(event: Event)
+}
 
 interface UserRepository {
   val udata: Flow<PagingData<User>>
@@ -93,7 +93,8 @@ interface PostRepository {
   suspend fun disLikeById(id: Long)
   suspend fun likeById(id: Long)
   //suspend fun uploadMfileToServer(upload: String): String
-  suspend fun savePostForWorker(post: Post, uri: String?, type: String?) : Long
+  suspend fun savePostForWorker(post: Post//, uri: String?, type: String?
+  ) : Long
   suspend fun processPostWork(task: Array<String>)
   suspend fun sendDeletePost(id: Long)
   suspend fun getPostById(id: Long): PostEntity

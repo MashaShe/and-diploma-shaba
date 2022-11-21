@@ -1,35 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.NewEventFragment">
 
-
-    <EditText
-        android:id="@+id/edit"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/description_post_save"
-        app:srcCompat="@drawable/ic_ok_24dp"
-        app:layout_anchor="@id/bottomAppBar"
-        />
+            <ImageView
+                android:id="@+id/dot1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ic_circle"
+                app:tint="#A3B7F3" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <ImageView
+                android:id="@+id/dot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/ic_circle"
+                app:tint="#A3B7F3" />
+
+            <com.example.and_diploma_shaba.activity.utils.LinedEditText
+                android:id="@+id/edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:minLines="12" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:id="@+id/previewPanel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    >
+
+                    <ImageView
+                        android:id="@+id/previewPhoto"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/remove_attach"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:tint="@null"
+                        android:src="@drawable/ic_cancel" />
+                </FrameLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/linkBtn"
+                    style="@style/Widget.AppTheme.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/event_link"
+                    app:iconTint="@color/colorPrimary"
+                    android:padding="@dimen/common_spacing"
+                    app:icon="@drawable/ic_link" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/eventTypeBtn"
+                    style="@style/Widget.AppTheme.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/event_types"
+                    app:iconTint="@color/colorPrimary"
+                    android:padding="@dimen/common_spacing"
+                    app:icon="@drawable/ic_menu" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/dateBtn"
+                    style="@style/Widget.AppTheme.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/pick_up_a_date"
+                    app:iconTint="@color/colorPrimary"
+                    android:padding="@dimen/common_spacing"
+                    app:icon="@drawable/ic_baseline_date_range_24" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:layout_marginEnd="@dimen/common_spacing"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

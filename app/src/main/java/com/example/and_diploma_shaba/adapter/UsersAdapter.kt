@@ -17,7 +17,7 @@ import com.example.and_diploma_shaba.dto.User
 
 interface OnUsersInteractionListener {
     fun onWall(post: User) {}
-    fun onJobs(post: User) {}
+   // fun onJobs(post: User) {}
     fun onEvents(post: User) {}
 }
 
@@ -70,7 +70,7 @@ class UserViewHolder(
 
     fun bind(user: User) {
         binding.apply {
-            userInfo.text = user.userLastName
+            userInfo.text = user.userLogin
             userid.text = "#${user.userId}"
 //            avatar.loadX(
 //                user.avatar,
@@ -90,9 +90,9 @@ class UserViewHolder(
                 onInteractionListener.onWall(user)
             }
 
-            toJobs.setOnClickListener {
-                onInteractionListener.onJobs(user)
-            }
+//            toJobs.setOnClickListener {
+//                onInteractionListener.onJobs(user)
+//            }
         }
     }
 }

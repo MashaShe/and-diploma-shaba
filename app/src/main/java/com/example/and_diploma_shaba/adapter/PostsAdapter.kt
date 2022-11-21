@@ -9,17 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
-import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.button.MaterialButton
 import com.example.and_diploma_shaba.R
 //import com.example.and_diploma_shaba.adapter.loadX
 import com.example.and_diploma_shaba.databinding.CardPostBinding
@@ -31,7 +26,6 @@ import java.text.ParseException
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.*
 
 interface OnInteractionListener {
     fun onLike(post: Post)

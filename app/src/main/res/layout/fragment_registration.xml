@@ -62,7 +62,7 @@
         android:layout_marginTop="20dp"
         tools:ignore="InvalidId">
 
-        <TextView
+  <!--      <TextView
             android:id="@+id/userFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:singleLine="true"
             app:layout_constraintTop_toBottomOf="@+id/userFirstName"
             tools:text="Text from res"
-            tools:ignore="Suspicious0dp" />
+            tools:ignore="Suspicious0dp" /> -->
 
     </LinearLayout>>
 

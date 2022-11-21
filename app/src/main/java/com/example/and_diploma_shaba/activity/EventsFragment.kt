@@ -4,10 +4,9 @@ import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -15,47 +14,44 @@ import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import com.example.and_diploma_shaba.R
 import com.example.and_diploma_shaba.activity.utils.PagingLoadStateAdapter
-import com.example.and_diploma_shaba.activity.utils.prepareIntent
 import com.example.and_diploma_shaba.adapter.EventsAdapter
 import com.example.and_diploma_shaba.adapter.OnEventsInteractionListener
 import com.example.and_diploma_shaba.databinding.FragmentEventsFeedBinding
 import com.example.and_diploma_shaba.dto.Event
 import com.example.and_diploma_shaba.viewmodel.EditEventViewModel
-import com.example.and_diploma_shaba.viewmodel.EventAllViewModel
+import com.example.and_diploma_shaba.viewmodel.EventViewModel
+import androidx.recyclerview.widget.SimpleItemAnimator
+import com.example.and_diploma_shaba.activity.utils.prepareIntent
 import com.example.and_diploma_shaba.viewmodel.MediaWorkEventViewModel
 
-class EventsFeedFragment : Fragment() {
-    private val viewModel: EventAllViewModel by activityViewModels()
+
+class EventsFragment : Fragment(R.layout.fragment_events_feed) {
+    private val viewModel: EventViewModel by activityViewModels()
     private val edViewModel: EditEventViewModel by activityViewModels()
     private val mwViewModel: MediaWorkEventViewModel by activityViewModels()
-    private var _binding: FragmentEventsFeedBinding? = null
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
-    @ExperimentalCoroutinesApi
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentEventsFeedBinding.inflate(inflater, container, false)
-        return _binding!!.root
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.setTitle(R.string.see_events)
     }
 
     @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var binding = FragmentEventsFeedBinding.bind(view)
+
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         val adapter = EventsAdapter(object : OnEventsInteractionListener {
+
             override fun onLinkClick(event: Event) {
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse(event.link)
@@ -75,8 +71,20 @@ class EventsFeedFragment : Fragment() {
                 }
             }
 
+            override fun onEdit(event: Event) {
+                val bundle = Bundle()
+                bundle.putLong("id", event.id)
+                setFragmentResult("keyNewEvent", bundle)
+
+            }
+
             override fun onLike(event: Event) {
                 edViewModel.setLikeOrDislike(event)
+            }
+
+            override fun onRemove(event: Event) {
+                edViewModel.deleteEvent(event.id)
+                mwViewModel.deleteFile(event)
             }
 
 
@@ -101,21 +109,44 @@ class EventsFeedFragment : Fragment() {
 
             override fun participate(event: Event) {
                 edViewModel.participate(event)
+
             }
         })
 
 
-        _binding?.eventList?.adapter = adapter
+//        binding.fabEvents.setOnClickListener {
+//            setFragmentResult("keyNewEvent", Bundle())
+//        }
+
+
+        arguments?.getLong("user")?.let {
+            viewModel.loadEventsForUser(it)
+        }
+        arguments?.getBoolean("edit")?.let {
+            if (it){
+                binding.fabEvents.visibility = View.VISIBLE
+            }
+        }
+
+
+        (binding.eventList.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+
+        binding.eventList.adapter = adapter
             .withLoadStateHeaderAndFooter(
                 header = PagingLoadStateAdapter(adapter::retry),
                 footer = PagingLoadStateAdapter(adapter::retry)
             )
 
 
-        (_binding?.eventList?.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+        binding.eventList.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         val offesetH = resources.getDimensionPixelSize(R.dimen.common_spacing)
-        _binding?.eventList?.addItemDecoration(
+        binding.eventList.addItemDecoration(
             object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
                     outRect: Rect,
@@ -127,57 +158,50 @@ class EventsFeedFragment : Fragment() {
                 }
             }
         )
-        edViewModel.dataState.observe(viewLifecycleOwner) { state ->
-            if (state.error) {
-                Snackbar.make(_binding!!.root, R.string.login_first, Snackbar.LENGTH_LONG)
-                    .show()
-            }
-        }
+
+
 
 
         viewModel.dataState.observe(viewLifecycleOwner) { state ->
-            _binding?.swiperefresh?.isRefreshing = state.refreshing
-            _binding?.progress?.isVisible = state.loading && _binding?.swiperefresh?.isVisible == false
+            binding.swiperefresh.isRefreshing = state.refreshing
+            binding.progress.isVisible = state.loading && !binding.swiperefresh.isVisible
 
-            if (!state.refreshing && !state.loading && !state.empty) {
-                _binding?.eventList?.visibility = View.VISIBLE
-            } else {
-                _binding?.eventList?.visibility = View.INVISIBLE
-            }
             if (state.error) {
-                Snackbar.make(_binding!!.root, R.string.error_loading, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.retry_loading) { viewModel.loadEvents() }
+                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.retry_loading) { adapter.refresh() }
                     .show()
             }
         }
 
-        lifecycleScope.launchWhenCreated {
-            viewModel.events().collectLatest {
-                adapter.submitData(it)
-
-            }
-        }
 
 
         lifecycleScope.launchWhenCreated {
             adapter.loadStateFlow.collectLatest { states ->
-                _binding?.swiperefresh?.isRefreshing = states.refresh is LoadState.Loading
-               // _binding?.errorOccured?.isVisible = states.refresh is LoadState.Error
-
-                if (states.refresh.endOfPaginationReached) {
-                    _binding?.EventTextView?.isVisible = adapter.itemCount == 0
+                binding.swiperefresh.isRefreshing = states.refresh is LoadState.Loading
+                //.snapshot().items
+                if (states.refresh is LoadState.NotLoading) {
+                    binding.EventTextView.isVisible = adapter.itemCount == 0
                 }
+
             }
         }
 
-        _binding?.swiperefresh?.setOnRefreshListener {
-            viewModel.loadEvents()
+
+        lifecycleScope.launchWhenCreated {
+            viewModel.events().collectLatest {
+                adapter.submitData(it)
+            }
         }
 
-        _binding?.fabEvents?.setOnClickListener {
-            setFragmentResult("keyNewEvent", Bundle())
 
+
+        binding.swiperefresh.setOnRefreshListener {
+            adapter.refresh()
         }
 
     }
+
+
+
 }
+

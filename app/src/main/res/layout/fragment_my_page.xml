@@ -18,16 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="jobLst,div1,div2,postLst,myPosts,myJobs,newJob,newPost,materialCardView"
+            app:constraint_referenced_ids="div1,postLst,myPosts,newPost,materialCardView"
             tools:visibility="gone" />
+        <!-- div2, myJobs,newJob,jobLst-->
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupNotLogined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            app:constraint_referenced_ids="loginFirst, aboutL, progressLogining, noprofile,loginBtn"
+            app:constraint_referenced_ids="loginFirst, progressLogining, noprofile,loginBtn"
             tools:visibility="gone" />
+
+        <!--aboutL,-->
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupErrorOccurred"
@@ -111,7 +114,7 @@
             app:layout_constraintStart_toStartOf="@+id/noPostsL"
             app:layout_constraintTop_toTopOf="@+id/newPost" />
 
-        <ProgressBar
+     <!--   <ProgressBar
             android:id="@+id/progressJobs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,6 +124,7 @@
             app:layout_constraintStart_toStartOf="@+id/nojobsL"
             app:layout_constraintTop_toTopOf="@+id/newJob"
             tools:visibility="gone" />
+            -->
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/progressLogining"
@@ -145,16 +149,17 @@
             tools:layout_editor_absoluteX="7dp"
             tools:visibility="visible" />
 
-        <View
+     <!--   <View
             android:id="@+id/div2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:background="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/myJobs" />
+            app:layout_constraintBottom_toTopOf="@+id/myPosts" />
+        -->
 
-        <TextView
+     <!--   <TextView
             android:id="@+id/myJobs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,8 +169,9 @@
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+            -->
 
-        <TextView
+     <!--   <TextView
             android:id="@+id/nojobsL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -176,6 +182,7 @@
             app:layout_constraintStart_toStartOf="@+id/noPostsL"
             app:layout_constraintTop_toTopOf="@+id/jobLst"
             tools:visibility="visible" />
+            -->
 
         <TextView
             android:id="@+id/noPostsL"
@@ -204,12 +211,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="80dp"
             android:text="My posts:"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jobLst" />
+            app:layout_constraintTop_toBottomOf="@+id/div1" />
 
-        <androidx.recyclerview.widget.RecyclerView
+     <!--   <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/jobLst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -220,6 +227,7 @@
             app:layout_constraintTop_toBottomOf="@+id/newJob"
             tools:layout_height="10dp"
             tools:listitem="@layout/card_user" />
+            -->
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -282,7 +290,7 @@
                     app:strokeColor="@android:color/transparent"
                     app:strokeWidth="0dp" />
 
-                <com.google.android.material.button.MaterialButton
+             <!--   <com.google.android.material.button.MaterialButton
                     android:id="@+id/newEvent"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="wrap_content"
@@ -302,6 +310,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/username"
                     app:strokeColor="@android:color/transparent"
                     app:strokeWidth="0dp" />
+                    -->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -318,7 +327,7 @@
             app:layout_constraintTop_toBottomOf="@+id/myPosts" />
 
 
-        <Button
+      <!--  <Button
             android:id="@+id/newJob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -329,8 +338,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/myJobs"
             tools:visibility="visible" />
-
-      <TextView
+-->
+    <!--  <TextView
             android:id="@+id/aboutL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -341,6 +350,7 @@
             app:layout_constraintEnd_toEndOf="@+id/progressLogining"
             app:layout_constraintStart_toStartOf="@+id/progressLogining"
             app:layout_constraintTop_toBottomOf="@+id/progressLogining" />
+            -->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

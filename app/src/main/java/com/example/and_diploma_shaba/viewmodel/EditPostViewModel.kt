@@ -66,7 +66,8 @@ class EditPostViewModel @Inject constructor(
 
                     val id : Long =
                         repository.savePostForWorker(
-                            post.copy(),uri, type)
+                            post.copy()//,uri, type
+                                    )
 
 
                     initWorkManager(id)
@@ -78,7 +79,7 @@ class EditPostViewModel @Inject constructor(
         edited.value = empty
         _attach.value = null
         _coords.value = null
-        _postText.value = "test"
+        _postText.value = null
         _positionOfLoadingPost = -1
     }
 
@@ -148,7 +149,7 @@ class EditPostViewModel @Inject constructor(
         edited.value = empty
         _attach.value = null
         _coords.value = null
-        _postText.value = "test"
+        _postText.value = ""
     }
 
 }

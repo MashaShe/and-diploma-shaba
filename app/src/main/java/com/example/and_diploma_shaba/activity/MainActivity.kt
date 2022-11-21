@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 replaceFragment(MainFragment::class.java, bundle)
             }
 
-//            setFragmentResultListener("keyEvents", this@MainActivity) { _, bundle ->
-//                replaceFragment(EventsFeedFragment::class.java, bundle)
-//            }
-//
+            setFragmentResultListener("keyEvents", this@MainActivity) { _, bundle ->
+                replaceFragment(EventsFeedFragment::class.java, bundle)
+            }
+
             setFragmentResultListener("keyWall", this@MainActivity) { _, bundle ->
                 replaceFragment(PostsFragment::class.java, bundle)
             }
@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             setFragmentResultListener("keyNewPost", this@MainActivity) { _, bundle ->
                 replaceFragment(NewPostFragment::class.java, bundle)
             }
-//            setFragmentResultListener("keyNewEvent", this@MainActivity) { _, bundle ->
-//                replaceFragment(NewEventFragment::class.java, bundle)
-  //          }
+            setFragmentResultListener("keyNewEvent", this@MainActivity) { _, bundle ->
+                replaceFragment(NewEventFragment::class.java, bundle)
+            }
 //            setFragmentResultListener("keyMapPicker", this@MainActivity) { _, bundle ->
 //                replaceFragment(MapPickerFragment::class.java, bundle)
 //            }

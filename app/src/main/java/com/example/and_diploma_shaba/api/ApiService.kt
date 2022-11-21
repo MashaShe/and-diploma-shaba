@@ -47,7 +47,7 @@ interface ApiService {
 
     //EVENTS
     @GET("events")
-     fun getAllEvents(): Response<List<Event>> //suspend
+    suspend fun getAllEvents(): Response<List<Event>> //suspend
 
     @GET("events/{id}")
     suspend fun getEventById(@Path("id") id: Long): Response<Event>

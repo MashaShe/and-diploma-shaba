@@ -220,13 +220,13 @@ class MyPageFragment : Fragment(R.layout.fragment_my_page)
             appAuth.removeAuth()
         }
 
-        binding.newEvent.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putLong("user", appAuth.myId)
-            bundle.putBoolean("edit", true)
-            setFragmentResult("keyEvents", bundle)
-            requireActivity().setTitle(R.string.tab_text_3)
-        }
+//        binding.newEvent.setOnClickListener {
+//            val bundle = Bundle()
+//            bundle.putLong("user", appAuth.myId)
+//            bundle.putBoolean("edit", true)
+//            setFragmentResult("keyEvents", bundle)
+//            requireActivity().setTitle(R.string.tab_text_3)
+//        }
 
         //Login Button
         binding.loginBtn.setOnClickListener {

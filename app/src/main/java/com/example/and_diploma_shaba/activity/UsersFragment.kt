@@ -20,20 +20,21 @@ import com.example.and_diploma_shaba.activity.utils.PagingLoadStateAdapter
 import com.example.and_diploma_shaba.adapter.OnUsersInteractionListener
 import com.example.and_diploma_shaba.adapter.UsersAdapter
 import com.example.and_diploma_shaba.databinding.FragmentUsersBinding
+import com.example.and_diploma_shaba.databinding.CardUserBinding
 import com.example.and_diploma_shaba.dto.User
 import com.example.and_diploma_shaba.viewmodel.UsersViewModel
+import kotlinx.android.synthetic.main.card_user.*
 
 
 @AndroidEntryPoint
 class UsersFragment : Fragment(R.layout.fragment_users) {
     private val viewModel: UsersViewModel by activityViewModels()
-    //private var _binding: FragmentUsersBinding? = null
     private var _binding: FragmentUsersBinding? = null
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
     }
 
     @ExperimentalCoroutinesApi
@@ -56,9 +57,9 @@ class UsersFragment : Fragment(R.layout.fragment_users) {
                 setFragmentResult("keyWall", bundle)
             }
 
-            private fun setFragmentResult(s: String, bundle: Bundle) {
-
-            }
+//            private fun setFragmentResult(s: String, bundle: Bundle) {
+//
+//            }
 
 //            override fun onJobs(user: User) {
 //                val bundle = Bundle()
@@ -67,11 +68,11 @@ class UsersFragment : Fragment(R.layout.fragment_users) {
 //
 //            }
 
-//            override fun onEvents(user: User) {
-//                val bundle = Bundle()
-//                bundle.putLong("user", user.userId)
-//                setFragmentResult("keyEvents", bundle)
-//            }
+            override fun onEvents(user: User) {
+                val bundle = Bundle()
+                bundle.putLong("user", user.userId)
+                setFragmentResult("keyEvents", bundle)
+            }
 
         })
 
@@ -139,6 +140,8 @@ class UsersFragment : Fragment(R.layout.fragment_users) {
             viewModel.loadUsers()
 
         }
+
+
 
 
 

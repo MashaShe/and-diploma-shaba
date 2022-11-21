@@ -43,7 +43,7 @@
     <string name="login_fail">Логин или пароль введены  некорректно</string>
     <string name="login_success">Успех! Теперь попробуйте войти</string>
     <string name="go_to_post_feed">go to post feed</string>
-    <string name="events_header">Мероприятия</string>
+    <string name="events_header">События</string>
     <string name="posts_list">Посты</string>
     <string name="cancel">Отмена</string>
     <string name="ok">Ok</string>
@@ -83,10 +83,22 @@
     <string name="write_your_post">Напишите текст поста</string>
     <string name="login_first_action">Сначала войдите</string>
 
-
-
-
-
+    <string name="format">Формат: %1$s</string>
+    <string name="organizators">Организаторы: %1$s</string>
+    <string name="toParticipate">Участвовать</string>
+    <string name="you_going_to">Вы пойдете</string>
+    <string name="downloading">загрузка...</string>
+    <string name="choose_app">Открыть...</string>
+    <string name="see_events">События</string>
+    <string name="new_event">Новое событие</string>
+    <string name="event_soon">Ваше событие скоро появится</string>
+    <string name="edit_event">Изменить событие</string>
+    <string name="event_types">Тип события</string>
+    <string name="pick_up_a_date">Выберите дату</string>
+    <string name="offline">офлайн</string>
+    <string name="online">онлайн</string>
+    <string name="event_link">Ссылка на событие</string>
+    <string name="insert_a_link_here">Вставьте сюда ссылку</string>
 
 
 </resources>

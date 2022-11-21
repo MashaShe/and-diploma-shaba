@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
@@ -107,14 +108,14 @@ class PostsAllFragment : Fragment() {
         })
 
 
-        _binding?.postList?.adapter = adapter.withLoadStateHeaderAndFooter(
+        _binding?.plist?.adapter = adapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter(adapter::retry),
             footer = PagingLoadStateAdapter(adapter::retry)
         )
 
 
         val offesetH = resources.getDimensionPixelSize(R.dimen.common_spacing)
-        _binding?.postList?.addItemDecoration(
+        _binding?.plist?.addItemDecoration(
             object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
                     outRect: Rect,
@@ -161,6 +162,15 @@ class PostsAllFragment : Fragment() {
             viewModel.refreshPosts()
         }
 
+        _binding?.fab?.setOnClickListener {
+            //  replaceFragment(MainFragment::class.java, bundle)
+    //            val bundle = Bundle()
+    //            bundle.putLong("user", appAuth.myId)
+    //            bundle.putBoolean("edit", true)
+            setFragmentResult("keyNewPost", Bundle())
+    //            requireActivity().setTitle(R.string.tab_text_2)
+
+        }
 
 
 

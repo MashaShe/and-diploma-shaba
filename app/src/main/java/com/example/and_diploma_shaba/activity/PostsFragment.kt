@@ -99,7 +99,7 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
         })
 
 
-        binding.postList.adapter = adapter.withLoadStateHeaderAndFooter(
+        binding.plist.adapter = adapter.withLoadStateHeaderAndFooter(
             header = PagingLoadStateAdapter(adapter::retry),
             footer = PagingLoadStateAdapter(adapter::retry)
         )
@@ -109,7 +109,7 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
                 viewModel.getWallById(it)
         }
 
-        binding.postList.addItemDecoration(
+        binding.plist.addItemDecoration(
             DividerItemDecoration(
                 requireContext(),
                 DividerItemDecoration.VERTICAL
@@ -117,7 +117,7 @@ class PostsFragment : Fragment(R.layout.fragment_feed) {
         )
 
         val offesetH = resources.getDimensionPixelSize(R.dimen.common_spacing)
-        binding.postList.addItemDecoration(
+        binding.plist.addItemDecoration(
             object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
                     outRect: Rect,
